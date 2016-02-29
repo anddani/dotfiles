@@ -1,0 +1,149 @@
+#!/bin/bash
+
+###############################################
+#                                             #
+#    Bash script for Mac OSX installation     #
+#                                             #
+#    Run script as following:                 #
+#    create_symlinks GIT_USERNAME GIT_EMAIL   #
+#                                             #
+###############################################
+
+# Check that there are two parameters
+if [[ $# -lt 2 ]] ; then
+    echo "Run program as:"
+    echo "create_symlinks GIT_USERNAME GIT_EMAIL"
+    exit 0
+fi
+
+GIT_NAME=$1
+GIT_EMAIL=$2
+FILES=".bash_profile .bashrc .tmux.conf .vimrc .zshrc"
+FOLDERS=".bin .tmuxinator .vim"
+
+# CHECK IF NEEDED?
+# Runs a background process that runs a program as super user so
+# that the sudo password can be saved
+# From: https://github.com/mathiasbynens/dotfiles/blob/master/.osx
+# sudo -v
+# while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+echo "Installing Command Line Tools"
+xcode-select --install
+echo "Press RETURN to continue..."
+read nothing
+
+echo "Configure git username and email"
+git config --global user.name "$GIT_NAME"
+git config --global user.email "$GIT_EMAIL"
+echo "...done"
+
+echo "Generate ssh keys"
+ssh-keygen -t rsa -b 4096 -C "$GIT_EMAIL"
+if test $(ssh-agent -s); then
+    ssh-add ~/.ssh/id_rsa
+fi
+echo "...done"
+
+echo "Copy your public key to the system clipboard"
+pbcopy < ~/.ssh/id_rsa.pub
+echo "...done"
+
+echo "Add your public key to your github account"
+echo "Press RETURN to continue..."
+read nothing
+
+echo "Check that we can connect to github"
+ssh -T git@github.com
+echo "...done"
+echo "Press RETURN to continue..."
+read nothing
+
+if test ! $(which brew); then
+    echo "Installing Homebrew"
+    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    echo "...done"
+fi
+
+echo "Check for updates for Homebrew"
+brew update
+echo "...done"
+
+echo "Installing Mac core utilities"
+brew install coreutils
+echo "...done"
+
+echo "Installing MacVim"
+brew install macvim
+echo "...done"
+
+echo "Installing rbenv and ruby-build"
+brew install rbenv ruby-build
+echo "...done"
+
+echo "Installing tmux and tpm"
+brew install tmux
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+echo "...done"
+
+echo "Installing python, virtualenv and virtualenvwrapper"
+brew install python
+pip install virtualenv
+pip install virtualenvwrapper
+echo "...done"
+
+echo "Installing cmake"
+brew install cmake
+echo "...done"
+
+echo "Cleaning up Homebrew"
+brew cleanup
+echo "...done"
+
+echo "Installing oh-my-zsh"
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+echo "...done"
+
+echo "Creating a folder for the old files"
+mkdir ~/.olddotfiles
+echo "...done"
+
+echo "Moving old dotfiles to .olddotfiles"
+for f in $FILES
+do
+    mv ~/$f ~/.olddotfiles/$f
+done
+for f in $FOLDERS
+do
+    mv ~/$f ~/.olddotfiles/$f
+done
+echo "...done"
+
+echo "Creating symlinks"
+for f in $FILES
+do
+    ln -s ~/.dotfiles/files/$f ~/$f
+done
+for f in $FOLDERS
+do
+    ln -s ~/.dotfiles/files/$f ~/$f
+done
+echo "...done"
+
+echo "Installing Monokai Color scheme"
+git clone git://github.com/stephenway/monokai.terminal.git
+open ~/.monokai.terminal/Monokai.itermcolors
+echo "...done"
+echo "Press RETURN to continue..."
+read nothing
+
+echo "Installing Vundle"
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+echo "...done"
+
+# echo "Installing YouCompleteMe"
+# ~/.vim/bundle/YouCompleteMe/viminstall.py --clang-completer
+# echo "...done"
+
+echo ""
+echo "FINISHED"

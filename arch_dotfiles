@@ -1,0 +1,113 @@
+#!/bin/bash
+
+#################################################
+#                                               #
+#    Bash script for Arch Linux installation    #
+#                                               #
+#    Run script as following:                   #
+#    create_symlinks GIT_USERNAME GIT_EMAIL     #
+#                                               #
+#################################################
+
+# Check that there are two parameters
+if [[ $# -lt 2 ]] ; then
+    echo "Run program as:"
+    echo "create_symlinks GIT_USERNAME GIT_EMAIL"
+    exit 0
+fi
+
+GIT_NAME=$1
+GIT_EMAIL=$2
+FILES=".bash_profile .bashrc .tmux.conf .vimrc .zshrc"
+FOLDERS=".vim"
+I3_FILES=".Xdefaults .xinitrc .Xmodmap .Xresources"
+I3_FOLDERS=".config"
+
+# CHECK IF NEEDED?
+# Runs a background process that runs a program as super user so
+# that the sudo password can be saved
+# From: https://github.com/mathiasbynens/dotfiles/blob/master/.osx
+# sudo -v
+# while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+echo "Installing must-have programs"
+# Utilities
+# bind-tools for dig command
+# xclip for rxvt clipboard interaction
+# xsel for perl script
+# python2-sip, python2-pyqt4 and lib32-mpg123 are dependencies for fightcade
+sudo pacman -S vim tmux cmake mesa xorg xorg-twm xorg-xinit i3 dmenu gedit firefox htop openssh python ttf-hack ttf-dejavu ttf-liberation keychain evince thunar lxappearance bind-tools adobe-source-han-sans-otc-fonts python-virtualenv python-virtualenvwrapper xclip rxvt-unicode xautolock unzip lm_sensors xsel mpv feh alsa-utils pulseaudio pulseaudio-alsa lib32-alsa-plugins lib32-libpulse python2-sip python2-pyqt4 lib32-mpg123
+echo "...done"
+
+echo "Configure git username and email"
+git config --global user.name "$GIT_NAME"
+git config --global user.email "$GIT_EMAIL"
+echo "...done"
+
+echo "Generate ssh keys"
+ssh-keygen -t rsa -b 4096 -C "$GIT_EMAIL"
+if test $(ssh-agent -s); then
+    ssh-add ~/.ssh/id_rsa
+fi
+echo "...done"
+
+echo "Add your public key to your github account(s)"
+echo "Press RETURN to continue..."
+read nothing
+
+echo "Installing oh-my-zsh"
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+echo "...done"
+
+echo "Creating a folder for the old files"
+mkdir ~/.olddotfiles
+echo "...done"
+
+echo "Moving old dotfiles to .olddotfiles"
+for f in $FILES
+do
+    mv ~/$f ~/.olddotfiles/$f
+done
+for f in $FOLDERS
+do
+    mv ~/$f ~/.olddotfiles/$f
+done
+for f in $I3_FILES
+do
+    mv ~/$f ~/.olddotfiles/$f
+done
+for f in $I3_FOLDERS
+do
+    mv ~/$f ~/.olddotfiles/$f
+done
+echo "...done"
+
+echo "Creating symlinks"
+for f in $FILES
+do
+    ln -s ~/.dotfiles/files/$f ~/$f
+done
+for f in $FOLDERS
+do
+    ln -s ~/.dotfiles/files/$f ~/$f
+done
+for f in $I3_FILES
+do
+    ln -s ~/.dotfiles/i3files/$f ~/$f
+done
+for f in $I3_FOLDERS
+do
+    ln -s ~/.dotfiles/i3files/$f ~/$f
+done
+echo "...done"
+
+echo "Creating symbolic link for copy and paste"
+sudo ln -s ~/.dotfiles/archscripts/clipboard /usr/lib/urxvt/perl/clipboard
+echo "...done"
+
+echo "Installing Vundle"
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+echo "...done"
+
+echo ""
+echo "FINISHED"
