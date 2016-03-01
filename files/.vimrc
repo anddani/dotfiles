@@ -84,6 +84,7 @@ set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline:h12
 " set guifont=Monaco:h12
 
 " Molokai Color scheme
+set t_Co=256
 let g:molokai_original = 1
 colorscheme molokai
 
@@ -143,7 +144,7 @@ nmap <leader>sp :call SwitchSourceHeader()<CR>
 nmap <leader>lmk :VimtexCompileToggle<CR>
 nmap <leader>lcl :VimtexStop<CR>:VimtexClean<CR>
 nmap <leader>lwc :VimtexWordCount<CR>
-" let g:vimtex_enabled = 1
+let g:vimtex_enabled = 1
 " let g:vimtex_fold_enabled = 1
 
 " OS specific

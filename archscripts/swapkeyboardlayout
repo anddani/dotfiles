@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Swaps the keyboard layout between swedish and english
+
+KL=$(setxkbmap -query | awk '/layout/{print $2}') 
+
+if [[ $KL == "us" ]] ; then
+    setxkbmap se
+    xmodmap ~/.Xmodmap
+    exit 0
+else
+    setxkbmap us
+    xmodmap ~/.Xmodmap
+    exit 0
+fi

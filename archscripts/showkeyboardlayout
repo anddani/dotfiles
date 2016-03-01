@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# Used by i3blocks to print out current keyboard layout
+
+KL=$(setxkbmap -query | awk '/layout/{print toupper($2)}') 
+echo " $KL"

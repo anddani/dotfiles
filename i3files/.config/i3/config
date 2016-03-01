@@ -82,13 +82,13 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-# bindsym $mod+h split h
+bindsym $mod+m split h
 
 # split in vertical orientation
-# bindsym $mod+v split v
+bindsym $mod+n split v
 
 # toggle split orientation
-bindsym $mod+m layout toggle split
+# bindsym $mod+m layout toggle split
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -102,7 +102,10 @@ bindsym $mod+e layout toggle split
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+# bindsym $mod+space focus mode_toggle
+
+# swap keyboard layout
+bindsym $mod+space exec ~/.dotfiles/archscripts/swapkeyboardlayout
 
 # focus the parent container
 bindsym $mod+a focus parent

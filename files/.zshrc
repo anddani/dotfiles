@@ -111,6 +111,8 @@ else
 
     alias space="df -h"
     alias mountusb="sudo mount -t ntfs-3g /dev/sdb1 /mnt/ntfs"
+    alias tmux="tmux -2"
+    alias fightcade="python2 ~/bin/FightCade/main.py"
 fi
 
 # You may need to manually set your language environment
