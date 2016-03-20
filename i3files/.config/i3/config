@@ -17,7 +17,7 @@ set $w1     "1: Devel "
 set $w2     "2: Firefox "
 set $w3     "3: Terminal "
 set $w4     "4: Chrome "
-set $w5     "5"
+set $w5     "5: MPV "
 set $w6     "6"
 set $w7     "7"
 set $w8     "8"
@@ -88,7 +88,7 @@ bindsym $mod+m split h
 bindsym $mod+n split v
 
 # toggle split orientation
-# bindsym $mod+m layout toggle split
+bindsym $mod+b layout toggle split
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -143,6 +143,7 @@ bindsym $mod+Shift+0 move container to workspace $w10
 # xprop
 assign [class="Firefox"] $w2
 assign [class="google-chrome"] $w4
+assign [class="mpv"] $w5
 assign [class="Skype"] $w9
 assign [class="Steam"] $w10
 
@@ -192,7 +193,8 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-
+bindsym $mod+x exec amixer -D pulse sset Master 5%+
+bindsym $mod+z exec amixer -D pulse sset Master 5%-
 
 set $bg-color            #2f343f
 set $inactive-bg-color   #2f343f

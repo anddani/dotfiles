@@ -1,2 +1,6 @@
 [Added Associations]
 text/plain=wine-extension-txt.desktop;org.gnome.gedit.desktop;
+video/mp4=mpv.desktop;
+application/pdf=evince.desktop;
+video/x-matroska=mpv.desktop;
+video/x-flv=mpv.desktop;

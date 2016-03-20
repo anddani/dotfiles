@@ -6,11 +6,11 @@ URxvt.perl-ext-common: clipboard
 URxvt.keysym.Mod1-c: perl:clipboard:copy
 URxvt.keysym.Mod1-v: perl:clipboard:paste
 
-URxvt.iso14755: false
-URxvt.copyCommand:  xclip -i -selection clipboard
-URxvt.pasteCommand: xclip -o -selection clipboard
+! URxvt.iso14755: false
+! URxvt.copyCommand:  xclip -i -selection clipboard
+! URxvt.pasteCommand: xclip -o -selection clipboard
 
-URxvt*font: xft:Hack:size=8
+URxvt*font: xft:Hack:size=10:antialias=true
 URxvt*scrollBar: false
 URxvt*termName: rxvt-unicode-256color
 
