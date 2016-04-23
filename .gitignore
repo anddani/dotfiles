@@ -23,5 +23,6 @@ i3files/.config/Skype
 i3files/.config/Thunar
 i3files/.config/Trolltech.conf
 i3files/.config/xfce4
+i3files/.config/configstore
 
 files/.vim/bundle
