@@ -11,6 +11,7 @@ i3files/.config/dconf
 i3files/.config/gconf
 i3files/.config/gedit
 i3files/.config/google-chrome
+i3files/.config/gtk-2.0
 i3files/.config/gtk-3.0
 i3files/.config/htop
 i3files/.config/menus
@@ -22,5 +23,6 @@ i3files/.config/Skype
 i3files/.config/Thunar
 i3files/.config/Trolltech.conf
 i3files/.config/xfce4
+i3files/.config/configstore
 
 files/.vim/bundle

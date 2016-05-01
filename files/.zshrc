@@ -111,8 +111,13 @@ if [[ $platform == 'mac' ]]; then
 else
     eval $(keychain --eval --quiet)
 
+    export NEO4J_HOME=$HOME/Documents/neo4j-community-3.0.0-unix
+    export PATH=$NEO4J_HOME/bin:$PATH
+
     alias space="df -h"
     alias mountusb="sudo mount -t ntfs-3g /dev/sdb1 /mnt/ntfs"
+    alias tmux="tmux -2"
+    alias fightcade="python2 ~/bin/FightCade/main.py"
 fi
 
 # You may need to manually set your language environment
