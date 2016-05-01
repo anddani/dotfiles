@@ -39,7 +39,7 @@ alias tkills="tmux kill-server"
 alias startenv="source startenv.sh"
 alias virt="source env/bin/activate"
 
-alias gitcommit="~/.dotfiles/gitcommit"
+# alias gitcommit="~/.dotfiles/gitcommit"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -99,6 +99,8 @@ if [[ $platform == 'mac' ]]; then
     export PATH=$HOME/.rbenv/shims:$PATH
     export JAVA_HOME=$(/usr/libexec/java_home)
     export CLASSPATH=/Library/Tomcat/lib/servlet-api.jar
+    export GEM_HOME=$HOME/Software/ruby
+    export PATH=$PATH:$HOME/Software/ruby/bin
 
     alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
     alias compiletomcat="/Library/Tomcat/bin/compile.sh"

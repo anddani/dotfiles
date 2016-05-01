@@ -63,6 +63,9 @@ nmap <leader>up :so ~/.vimrc<CR>:PluginInstall<CR>
 " Quicker search and replace with vim-over
 nmap <leader>sr :OverCommandLine<CR>%s/
 
+" Copy to + register
+nmap <leader>y "+y
+
 " Remap multiple cursors
 let g:multi_cursor_next_key='<C-o>'
 let g:multi_cursor_prev_key='<C-i>'
