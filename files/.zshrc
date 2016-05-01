@@ -3,7 +3,7 @@ export ZSH=$HOME/.oh-my-zsh
 
 export WORKON_HOME=$HOME/.virtualenvs
 
-export GOPATH="$HOME/go"
+export GOPATH=$HOME/go
 
 # Source virtualenvwrapper script
 VENVWRAP="virtualenvwrapper.sh"
@@ -90,7 +90,6 @@ plugins=(git)
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
-
 
 if [[ $platform == 'mac' ]]; then
     source ~/.bin/tmuxinator.zsh
