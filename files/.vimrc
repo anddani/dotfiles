@@ -118,6 +118,7 @@ vno <right> <Nop>
 
 " Toggle NERDTree with C-n
 map <C-t> :NERDTreeToggle<CR>
+let NERDTreeIgnore = ['\.pyc$']
 
 function! SwitchSourceHeader()
     "update!
