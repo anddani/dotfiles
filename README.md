@@ -53,9 +53,9 @@ List out the devices using:
 
     # lsblk
 
-Note the device name given by the output by `lsblk`. Partition the chosen disk using the `cfdisk` tool (X is the letter corresponding the the chosen device):
+Note the device name given by the output by `lsblk`. Partition the chosen disk using the `gdisk` tool (X is the letter corresponding the the chosen device):
 
-    # cfdisk /dev/sdX
+    # gdisk /dev/sdX
 
 Delete all the partitions currently on the drive.
 
