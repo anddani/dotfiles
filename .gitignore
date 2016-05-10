@@ -28,7 +28,7 @@ i3files/.config/VirtualBox
 i3files/.config/kazam
 i3files/.config/mirage
 i3files/.config/user-dirs.*
-i3files/.config/enchant
+i3files/.config/enchant/*
 
 
 files/.vim/bundle
