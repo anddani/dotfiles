@@ -257,7 +257,11 @@ pacman-key --init
 pacman-key --populate archlinux
 ```
 
-#### Step 3, Install font rendering and System San Francisco font:
+#### Step 3, Install i3blocks
+
+    # yaourt -S i3blocks
+
+#### Step 4, Install font rendering and System San Francisco font:
 
 ##### Infinality for better font rendering:
 
@@ -277,11 +281,11 @@ Download the font package from [here](https://github.com/supermarin/YosemiteSanF
 
 and move the fonts to the `.fonts` folder (create a folder called ~/.fonts if it doesn't exist).
 
-#### Step 4, Install graphics drivers (Nvidia):
+#### Step 5, Install graphics drivers (Nvidia):
 
     # pacman -S nvidia nvidia-libgl lib32-nvidia-libgl lib32-nvidia-utils
 
-#### Step 4 (X220), Install graphics drivers (intel):
+#### Step 5 (X220), Install graphics drivers (intel):
 
     # pacman -S xf86-video-intel
 
