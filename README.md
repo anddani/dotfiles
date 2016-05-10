@@ -59,12 +59,22 @@ Note the device name given by the output by `lsblk`. Partition the chosen disk u
 
 Delete all the partitions currently on the drive.
 
+WITHOUT SWAP:
 | Type      | Diskname  | Size  | Filesystem |
 | --------- | --------- | ----- | ---------- |
 | /boot     | /dev/sdX1 | 512M  | EFI (EF00) |
 | /         | /dev/sdX2 | 50G   | ext4       |
 | /home     | /dev/sdX3 | REST  | ext4       |
 
+WITH SWAP:
+| Type      | Diskname  | Size  | Filesystem |
+| --------- | --------- | ----- | ---------- |
+| /boot     | /dev/sdX1 | 512M  | EFI (EF00) |
+| swap      | /dev/sdX2 | 16G   | swap(8200) |
+| /         | /dev/sdX3 | 30G   | ext4       |
+| /home     | /dev/sdX4 | REST  | ext4       |
+
+WITHOUT SWAP:
 Write the changes and format to ext4:
 
     # mkfs.fat -F32 /dev/sdX1
@@ -77,6 +87,22 @@ Mount the partitions:
     # mkdir /mnt/boot /mnt/home
     # mount /dev/sdX1 /mnt/boot
     # mount /dev/sdX3 /mnt/home
+
+WITH SWAP:
+Write the changes and format to ext4:
+
+    # mkfs.fat -F32 /dev/sdX1
+    # mkswap /dev/sdX2
+    # swapon /dev/sdX2
+    # mkfs.ext4 /dev/sdX3
+    # mkfs.ext4 /dev/sdX4
+
+Mount the partitions:
+
+    # mount /dev/sdX3 /mnt
+    # mkdir /mnt/boot /mnt/home
+    # mount /dev/sdX1 /mnt/boot
+    # mount /dev/sdX4 /mnt/home
 
 
 #### Installing base packages and confuguring language and time zone:
@@ -119,7 +145,7 @@ Change the root password with:
 
 #### Installation of bootloader
 
-Check that efivarfs is mounter:
+Check that efivarfs is mounted:
 
     # mount -t efivarfs efivarfs /sys/firmware/efi/efivars
 
