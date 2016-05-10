@@ -76,6 +76,7 @@ for f in $I3_FILES
 do
     ln -sf ~/.dotfiles/i3files/$f ~/$f
 done
+ln -sf ~/.dotfiles/.fonts ~/.fonts
 echo "...done"
 
 echo "Creating symbolic link for copy and paste"

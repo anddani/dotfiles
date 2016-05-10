@@ -213,10 +213,12 @@ Edit `/etc/pacman.conf` and comment out the multilib mirror
 
     $ git clone https://github.com/anddani/dotfiles.git ~/.dotfiles
 
-##### Run included script file:
+##### Run included script file and change to ssh:
 
     $ chmod u+x ~/.dotfiles/arch_dotfiles
     $ ~/.dotfiles/arch_dotfiles
+    $ cd ~/.dotfiles
+    $ git remote set-url git@github.com:anddani/dotfiles.git
 
 #### Step 2, Install yaourt
 
