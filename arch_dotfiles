@@ -32,11 +32,12 @@ I3_FOLDERS=".config"
 
 echo "Installing must-have programs"
 # Utilities
-# bind-tools for dig command
-# xclip for rxvt clipboard interaction
-# xsel for perl script
-# python2-sip, python2-pyqt4 and lib32-mpg123 are dependencies for fightcade
-sudo pacman -S vim tmux cmake mesa xorg xorg-twm xorg-xinit i3 dmenu gedit firefox htop openssh python ttf-hack ttf-dejavu ttf-liberation keychain evince thunar lxappearance bind-tools adobe-source-han-sans-otc-fonts python-virtualenv python-virtualenvwrapper xclip rxvt-unicode xautolock unzip lm_sensors xsel mpv feh alsa-utils pulseaudio pulseaudio-alsa lib32-alsa-plugins lib32-libpulse python2-sip python2-pyqt4 lib32-mpg123
+# bind-tools - dig command
+# xclip - rxvt clipboard interaction
+# xsel - perl script
+# python2-sip, python2-pyqt4 and lib32-mpg123 - dependencies for fightcade
+# scrot - Screenshot
+sudo pacman -S vim tmux cmake mesa xorg xorg-twm xorg-xinit i3 dmenu gedit firefox htop openssh python ttf-hack ttf-dejavu ttf-liberation keychain evince thunar lxappearance bind-tools adobe-source-han-sans-otc-fonts python-virtualenv python-virtualenvwrapper xclip rxvt-unicode xautolock unzip lm_sensors xsel mpv feh alsa-utils pulseaudio pulseaudio-alsa lib32-alsa-plugins lib32-libpulse python2-sip python2-pyqt4 lib32-mpg123 scrot
 echo "...done"
 
 echo "Configure git username and email"

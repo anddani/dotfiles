@@ -16,6 +16,7 @@ application/x-extension-shtml=userapp-Firefox-CH86EY.desktop;
 application/xhtml+xml=userapp-Firefox-CH86EY.desktop;
 application/x-extension-xhtml=userapp-Firefox-CH86EY.desktop;
 application/x-extension-xht=userapp-Firefox-CH86EY.desktop;
+image/png=feh.desktop;wine-extension-png.desktop;
 
 [Default Applications]
 x-scheme-handler/http=userapp-Firefox-CH86EY.desktop

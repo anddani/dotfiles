@@ -97,7 +97,10 @@ if [[ $platform == 'mac' ]]; then
 
     export PATH=$HOME/.rbenv/shims:$PATH
     export JAVA_HOME=$(/usr/libexec/java_home)
-    export CLASSPATH=/Library/Tomcat/lib/servlet-api.jar
+
+    # For tomcat
+    # export CLASSPATH=/Library/Tomcat/lib/servlet-api.jar
+    
     export GEM_HOME=$HOME/Software/ruby
     export PATH=$PATH:$HOME/Software/ruby/bin
 
@@ -110,7 +113,7 @@ if [[ $platform == 'mac' ]]; then
 else
     eval $(keychain --eval --quiet)
 
-    export NEO4J_HOME=$HOME/Documents/neo4j-community-3.0.0-unix
+    export NEO4J_HOME=$HOME/Documents/neo4j-community-3.0.0
     export PATH=$NEO4J_HOME/bin:$PATH
 
     alias space="df -h"
