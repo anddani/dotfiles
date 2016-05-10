@@ -60,6 +60,7 @@ Note the device name given by the output by `lsblk`. Partition the chosen disk u
 Delete all the partitions currently on the drive.
 
 WITHOUT SWAP:
+
 | Type      | Diskname  | Size  | Filesystem |
 | --------- | --------- | ----- | ---------- |
 | /boot     | /dev/sdX1 | 512M  | EFI (EF00) |
@@ -67,6 +68,7 @@ WITHOUT SWAP:
 | /home     | /dev/sdX3 | REST  | ext4       |
 
 WITH SWAP:
+
 | Type      | Diskname  | Size  | Filesystem |
 | --------- | --------- | ----- | ---------- |
 | /boot     | /dev/sdX1 | 512M  | EFI (EF00) |
@@ -278,3 +280,29 @@ and move the fonts to the `.fonts` folder (create a folder called ~/.fonts if it
 #### Step 4, Install graphics drivers (Nvidia):
 
     # pacman -S nvidia nvidia-libgl lib32-nvidia-libgl lib32-nvidia-utils
+
+#### Step 4 (X220), Install graphics drivers (intel):
+
+    # pacman -S xf86-video-intel
+
+#### Notes for X220
+Boot parameters in `/etc/default/grub`:
+
+```
+GRUB_CMDLINE_LINUX_DEFAULT="quiet pcie_aspm=force i915.i915_enable_rc6=1 i915.i915_enable_fbc=1 i915.lvds_downclock=1"
+```
+
+    AUR:
+    thinkfan
+
+    Official:
+    tlp
+    tp_smapi
+    acpi_call
+    gnome-keyring
+    networkmanager
+    network-manager-applet
+
+Enable tlp services `tlp.service` and `tlp-sleep.service` and disable `systemd-rfkill.service`
+
+Enable networkmanager service `NetworkManager.service`
