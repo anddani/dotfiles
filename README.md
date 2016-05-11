@@ -53,13 +53,14 @@ List out the devices using:
 
     # lsblk
 
-Note the device name given by the output by `lsblk`. Partition the chosen disk using the `cfdisk` tool (X is the letter corresponding the the chosen device):
+Note the device name given by the output by `lsblk`. Partition the chosen disk using the `gdisk` tool (X is the letter corresponding the the chosen device):
 
-    # cfdisk /dev/sdX
+    # gdisk /dev/sdX
 
 Delete all the partitions currently on the drive.
 
 WITHOUT SWAP:
+
 | Type      | Diskname  | Size  | Filesystem |
 | --------- | --------- | ----- | ---------- |
 | /boot     | /dev/sdX1 | 512M  | EFI (EF00) |
@@ -67,6 +68,7 @@ WITHOUT SWAP:
 | /home     | /dev/sdX3 | REST  | ext4       |
 
 WITH SWAP:
+
 | Type      | Diskname  | Size  | Filesystem |
 | --------- | --------- | ----- | ---------- |
 | /boot     | /dev/sdX1 | 512M  | EFI (EF00) |
@@ -211,10 +213,12 @@ Edit `/etc/pacman.conf` and comment out the multilib mirror
 
     $ git clone https://github.com/anddani/dotfiles.git ~/.dotfiles
 
-##### Run included script file:
+##### Run included script file and change to ssh:
 
     $ chmod u+x ~/.dotfiles/arch_dotfiles
     $ ~/.dotfiles/arch_dotfiles
+    $ cd ~/.dotfiles
+    $ git remote set-url git@github.com:anddani/dotfiles.git
 
 #### Step 2, Install yaourt
 
@@ -255,7 +259,11 @@ pacman-key --init
 pacman-key --populate archlinux
 ```
 
-#### Step 3, Install font rendering and System San Francisco font:
+#### Step 3, Install i3blocks
+
+    # yaourt -S i3blocks
+
+#### Step 4, Install font rendering and System San Francisco font:
 
 ##### Infinality for better font rendering:
 
@@ -275,6 +283,32 @@ Download the font package from [here](https://github.com/supermarin/YosemiteSanF
 
 and move the fonts to the `.fonts` folder (create a folder called ~/.fonts if it doesn't exist).
 
-#### Step 4, Install graphics drivers (Nvidia):
+#### Step 5, Install graphics drivers (Nvidia):
 
     # pacman -S nvidia nvidia-libgl lib32-nvidia-libgl lib32-nvidia-utils
+
+#### Step 5 (X220), Install graphics drivers (intel):
+
+    # pacman -S xf86-video-intel
+
+#### Notes for X220
+Boot parameters in `/etc/default/grub`:
+
+```
+GRUB_CMDLINE_LINUX_DEFAULT="quiet pcie_aspm=force i915.i915_enable_rc6=1 i915.i915_enable_fbc=1 i915.lvds_downclock=1"
+```
+
+    AUR:
+    thinkfan
+
+    Official:
+    tlp
+    tp_smapi
+    acpi_call
+    gnome-keyring
+    networkmanager
+    network-manager-applet
+
+Enable tlp services `tlp.service` and `tlp-sleep.service` and disable `systemd-rfkill.service`
+
+Enable networkmanager service `NetworkManager.service`

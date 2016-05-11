@@ -24,5 +24,11 @@ i3files/.config/Thunar
 i3files/.config/Trolltech.conf
 i3files/.config/xfce4
 i3files/.config/configstore
+i3files/.config/VirtualBox
+i3files/.config/kazam
+i3files/.config/mirage
+i3files/.config/user-dirs.*
+i3files/.config/enchant/*
+
 
 files/.vim/bundle
