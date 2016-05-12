@@ -7,6 +7,7 @@ evince
 feh
 firefox
 gedit
+gvim
 htop
 i3
 infinality-bundle
@@ -34,7 +35,6 @@ ttf-dejavu
 ttf-hack
 ttf-liberation
 unzip
-vim
 xautolock
 xclip
 xorg
