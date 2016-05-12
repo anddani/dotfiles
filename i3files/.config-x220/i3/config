@@ -155,8 +155,8 @@ assign [class="Steam"] $w10
 # bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master 5%-
 # bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle
 
-bindsym $mod+p $exec scrot "$HOME/Pictures/Screenshot_%Y-%m-%d_%H-%M-%S.png"
-bindsym $mod+Shift+p $exec scrot -s "$HOME/Pictures/Screenshot_%Y-%m-%d_%H-%M-%S.png"
+bindsym --release $mod+p $exec scrot "$HOME/Pictures/Screenshot_%Y-%m-%d_%H-%M-%S.png"
+bindsym --release $mod+Shift+p $exec scrot -s "$HOME/Pictures/Screenshot_%Y-%m-%d_%H-%M-%S.png"
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
