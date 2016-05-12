@@ -1,0 +1,68 @@
+#!/bin/bash
+
+PROGRAM_NAME="common_dotfiles"
+DESKTOP="true"
+
+# Display help
+if [[ $# -eq 0 ]] ; then
+    echo "usage: $PROGRAM_NAME"
+    echo "       INSTRUCTIONS HERE"
+    exit 1
+fi
+
+# Extract parameters
+while getopts "e:lu:" opt ; do
+    case $opt in
+        e) GIT_EMAIL="$OPTARG"
+        ;;
+        l) DESKTOP="false"
+        ;;
+        u) GIT_USERNAME="$OPTARG"
+        ;;
+        \?) echo "Invalid option -$OPTARG" ; exit 1
+        ;;
+    esac
+done
+
+if [[ -z $GIT_USERNAME ]] ; then
+    echo "You must provide [-u Github username]"
+    exit 1
+fi
+
+if [[ -z $GIT_EMAIL ]] ; then
+    echo "You must provide [-e Github email]"
+    exit 1
+fi
+
+if [[ $DESKTOP == "true" ]] ; then
+    CONFIG=".config"
+else
+    CONFIG=".config-x220"
+fi
+
+# Update mirrors
+echo "UPDATING MIRRORS..."
+sudo echo mirrors >> /etc/pacman.conf
+sudo pacman -Syy
+sudo pacman-key -r 962DDE58
+sudo pacman-key --lsign-key 962DDE58
+sudo pacman -Syy
+
+# Install packages
+echo "INSTALLING PACKAGES..."
+while read p; do
+    echo $p
+    # sudo pacman -S --noconfirm $p
+done <packages
+
+if [[ $DESKTOP == "true" ]] ; then
+    while read p; do
+        echo $p
+        # sudo pacman -S --noconfirm $p
+    done <packages-desktop
+else
+    while read p; do
+        echo $p
+        # sudo pacman -S --noconfirm $p
+    done <packages-x220
+fi
