@@ -6,6 +6,8 @@
 */.Xauthority
 
 i3files/.config*/autostart
+i3files/.config*/DUI
+i3files/.config*/Deepin
 i3files/.config*/cef_user_data
 i3files/.config*/dconf
 i3files/.config*/gconf
@@ -29,6 +31,7 @@ i3files/.config*/kazam
 i3files/.config*/mirage
 i3files/.config*/user-dirs.*
 i3files/.config*/enchant/*
+i3files/.config*/mimeapps.list
 
 
 files/.vim/bundle

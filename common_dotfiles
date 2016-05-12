@@ -40,6 +40,9 @@ else
     CONFIG=".config-x220"
 fi
 
+echo "CREATING FOLDERS..."
+mkdir ~/Pictures
+
 # Update mirrors
 echo "UPDATING MIRRORS..."
 sudo echo mirrors >> /etc/pacman.conf
