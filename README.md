@@ -295,13 +295,14 @@ and move the fonts to the `.fonts` folder (create a folder called ~/.fonts if it
 Boot parameters in `/etc/default/grub`:
 
 ```
-GRUB_CMDLINE_LINUX_DEFAULT="quiet pcie_aspm=force i915.i915_enable_rc6=1 i915.i915_enable_fbc=1 i915.lvds_downclock=1"
+GRUB_CMDLINE_LINUX_DEFAULT="quiet pcie_aspm=force i915.i915_enable_rc6=1 i915.i915_enable_fbc=1 i915.lvds_downclock=1 acpi_backlight=intel_backlight"
 ```
 
     AUR:
     thinkfan
 
     Official:
+    xorg-xbacklight
     tlp
     tp_smapi
     acpi_call

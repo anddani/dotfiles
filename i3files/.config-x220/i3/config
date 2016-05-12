@@ -71,10 +71,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-# bindsym $mod+Shift+j move left
-# bindsym $mod+Shift+k move down
-# bindsym $mod+Shift+l move up
-# bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -112,7 +112,7 @@ bindsym $mod+space exec ~/.dotfiles/archscripts/swapkeyboardlayout
 bindsym $mod+a focus parent
 
 # lock screen
-bindsym $mod+Shift+l exec i3lock -d -c 474747
+bindsym $mod+Shift+o exec i3lock -d -c 474747
 
 # focus the child container
 #bindsym $mod+d focus child
@@ -155,7 +155,8 @@ assign [class="Steam"] $w10
 # bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master 5%-
 # bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle
 
-bindsym $mod+Shift+p $exec scrot "$HOME/Pictures/Screenshot_%Y-%m-%d_%H-%M-%S.png"
+bindsym $mod+p $exec scrot "$HOME/Pictures/Screenshot_%Y-%m-%d_%H-%M-%S.png"
+bindsym $mod+Shift+p $exec scrot -s "$HOME/Pictures/Screenshot_%Y-%m-%d_%H-%M-%S.png"
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -177,10 +178,11 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
+
+        bindsym $mod+h resize shrink width 10 px or 10 ppt
+        bindsym $mod+j resize grow height 10 px or 10 ppt
+        bindsym $mod+k resize shrink height 10 px or 10 ppt
+        bindsym $mod+l resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
@@ -191,12 +193,15 @@ mode "resize" {
         # back to normal: Enter or Escape
         bindsym Return mode "default"
         bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
 }
 
 bindsym $mod+r mode "resize"
 
 bindsym $mod+x exec amixer -D pulse sset Master 5%+
 bindsym $mod+z exec amixer -D pulse sset Master 5%-
+bindsym XF86MonBrightnessDown exec xbacklight -dec 5
+bindsym XF86MonBrightnessUp exec xbacklight -inc 5
 
 set $bg-color            #2f343f
 set $inactive-bg-color   #2f343f
