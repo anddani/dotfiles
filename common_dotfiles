@@ -1,7 +1,11 @@
 #!/bin/bash
 
-PROGRAM_NAME="common_dotfiles"
+ABS_PATH="/home/$(whoami)"
+ARCH="true"
+COMMON_FILES=".bash_profile .bashrc .tmux.conf .vim .vimrc .zshrc"
 DESKTOP="true"
+I3_FILES=".Xdefaults .xinitrc .Xmodmap .Xresources"
+PROGRAM_NAME="common_dotfiles"
 
 # Display help
 if [[ $# -eq 0 ]] ; then
@@ -11,11 +15,13 @@ if [[ $# -eq 0 ]] ; then
 fi
 
 # Extract parameters
-while getopts "e:lu:" opt ; do
+while getopts "e:lmu:" opt ; do
     case $opt in
         e) GIT_EMAIL="$OPTARG"
         ;;
         l) DESKTOP="false"
+        ;;
+        m) ARCH="false"
         ;;
         u) GIT_USERNAME="$OPTARG"
         ;;
@@ -34,38 +40,84 @@ if [[ -z $GIT_EMAIL ]] ; then
     exit 1
 fi
 
-if [[ $DESKTOP == "true" ]] ; then
-    CONFIG=".config"
-else
-    CONFIG=".config-x220"
-fi
+if [[ $ARCH == "true" ]] ; then
+    if [[ $DESKTOP == "true" ]] ; then
+        CONFIG=".config"
+    else
+        CONFIG=".config-x220"
+    fi
 
-echo "CREATING FOLDERS..."
-mkdir ~/Pictures
+    echo "CREATING FOLDERS..."
+    mkdir ~/Pictures
 
-# Update mirrors
-echo "UPDATING MIRRORS..."
-sudo echo mirrors >> /etc/pacman.conf
-sudo pacman -Syy
-sudo pacman-key -r 962DDE58
-sudo pacman-key --lsign-key 962DDE58
-sudo pacman -Syy
+    # Update mirrors
+    echo "UPDATING MIRRORS..."
+    sudo echo $ABS_PATH/.dotfiles/mirrors >> /etc/pacman.conf
+    sudo pacman -Syy
+    sudo pacman-key -r 962DDE58
+    sudo pacman-key --lsign-key 962DDE58
+    sudo pacman -Syy
 
-# Install packages
-echo "INSTALLING PACKAGES..."
-while read p; do
-    echo $p
-    # sudo pacman -S --noconfirm $p
-done <packages
-
-if [[ $DESKTOP == "true" ]] ; then
+    # Install packages
+    echo "INSTALLING PACKAGES..."
     while read p; do
         echo $p
         # sudo pacman -S --noconfirm $p
-    done <packages-desktop
+    done <packages
+
+    if [[ $DESKTOP == "true" ]] ; then
+        while read p; do
+            echo $p
+            # sudo pacman -S --noconfirm $p
+        done <packages-desktop
+    else
+        while read p; do
+            echo $p
+            # sudo pacman -S --noconfirm $p
+        done <packages-x220
+    fi
+
+    echo "Configure git username and email"
+    git config --global user.name "$GIT_NAME"
+    git config --global user.email "$GIT_EMAIL"
+    echo "...done"
+
+    echo "Generate ssh keys"
+    ssh-keygen -t rsa -b 4096 -C "$GIT_EMAIL"
+    if test $(ssh-agent -s); then
+        ssh-add ~/.ssh/id_rsa
+    fi
+    echo "...done"
+
+    echo "Add your public key to your github account(s)"
+    echo "Press RETURN to continue..."
+    read nothing
+
+    echo "Creating symlinks"
+    for f in $I3_FILES
+    do
+        ln -sf ~/.dotfiles/i3files/$f ~/$f
+    done
+    ln -sf ~/.dotfiles/.fonts ~/.fonts
+    ln -sf ~/.dotfiles/$CONFIG ~/.config
+    sudo ln -s $ABS_PATH/.dotfiles/archscripts/clipboard /usr/lib/urxvt/perl/clipboard
+    echo "...done"
+
 else
-    while read p; do
-        echo $p
-        # sudo pacman -S --noconfirm $p
-    done <packages-x220
+    for f in $MAC_FILES
+    do
+        ln -sf ~/.dotfiles/i3files/$f ~/$f
+    done
 fi
+for f in $COMMON_FILES
+do
+    ln -sf ~/.dotfiles/files/$f ~/$f
+done
+
+echo "Installing oh-my-zsh"
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+echo "...done"
+
+echo "Installing Vundle"
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+echo "...done"
