@@ -171,6 +171,12 @@ initrd  /initramfs-linux.img
 options root=/dev/sdX2 rw
 ```
 
+For laptop (with root at /dev/sdX3), set the `options` parameters to (for power saving):
+
+```
+options root=/dev/sdX3 rw quiet pcie_aspm=force i915.i915_enable_rc6=1 i915.i915_enable_fbc=1 i915.lvds_downclock=1 acpi_backlight=intel_backlight
+```
+
 Exit arch-chroot, unmount the disks and reboot the system:
 
     # exit
@@ -292,24 +298,4 @@ and move the fonts to the `.fonts` folder (create a folder called ~/.fonts if it
     # pacman -S xf86-video-intel
 
 #### Notes for X220
-Boot parameters in `/etc/default/grub`:
-
-```
-GRUB_CMDLINE_LINUX_DEFAULT="quiet pcie_aspm=force i915.i915_enable_rc6=1 i915.i915_enable_fbc=1 i915.lvds_downclock=1 acpi_backlight=intel_backlight"
-```
-
-    AUR:
-    thinkfan
-
-    Official:
-    xorg-xbacklight
-    tlp
-    tp_smapi
-    acpi_call
-    gnome-keyring
-    networkmanager
-    network-manager-applet
-
 Enable tlp services `tlp.service` and `tlp-sleep.service` and disable `systemd-rfkill.service`
-
-Enable networkmanager service `NetworkManager.service`
