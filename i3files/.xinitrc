@@ -2,5 +2,5 @@
 xrdb -merge ~/.Xresources
 xmodmap ~/.Xmodmap
 /usr/bin/dropbox &
-~/.dotfiles/autolock &
+~/.dotfiles/archscripts/autolock &
 exec i3

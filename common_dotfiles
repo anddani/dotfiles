@@ -13,7 +13,6 @@
 #                                             #
 ###############################################
 
-ABS_PATH="/home/$(whoami)"
 ARCH="true"
 COMMON_FILES=".bash_profile .bashrc .tmux.conf .vim .vimrc .zshrc"
 DESKTOP="true"
@@ -69,7 +68,8 @@ if [[ $ARCH == "true" ]] ; then
 
     # Update mirrors
     echo "UPDATING MIRRORS..."
-    sudo echo $ABS_PATH/.dotfiles/mirrors >> /etc/pacman.conf
+    cat $HOME/.dotfiles/mirrors \
+        | sudo tee -a /etc/pacman.conf >/dev/null
     sudo pacman -Syy
     sudo pacman-key -r 962DDE58
     sudo pacman-key --lsign-key 962DDE58
@@ -151,7 +151,7 @@ if [[ $ARCH == "true" ]] ; then
     done
     ln -sf ~/.dotfiles/.fonts ~/.fonts
     ln -sf ~/.dotfiles/$CONFIG ~/.config
-    sudo ln -s $ABS_PATH/.dotfiles/archscripts/clipboard /usr/lib/urxvt/perl/clipboard
+    sudo ln -s $HOME/.dotfiles/archscripts/clipboard /usr/lib/urxvt/perl/clipboard
     echo "...done"
 
 else
@@ -182,3 +182,4 @@ fi
 echo "Installing Vundle"
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 echo "...done"
+exit
