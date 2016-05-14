@@ -1,6 +1,33 @@
 # Dotfiles
 
-## Mac OS X
+- [Dotfiles](#dotfiles)
+  * [Mac OSX](#mac-osx)
+    + [Requirements:](#requirements)
+        * [Clone this repo:](#clone-this-repo)
+        * [Run included script file:](#run-included-script-file)
+    + [NTFS Compatibility](#ntfs-compatibility)
+  * [Arch Linux](#arch-linux)
+    + [Installation:](#installation)
+      - [Connect to the internet and check the system clock:](#connect-to-the-internet-and-check-the-system-clock)
+      - [Partition the drive(s):](#partition-the-drives)
+      - [Installing base packages and confuguring language and time zone:](#installing-base-packages-and-confuguring-language-and-time-zone)
+      - [Installation of bootloader](#installation-of-bootloader)
+      - [Create a new user and setup sudoers file:](#create-a-new-user-and-setup-sudoers-file)
+    + [Setup:](#setup)
+      - [Requirements:](#requirements-1)
+      - [Step 1, Install packages, dotfiles and scripts](#step-1-install-packages-dotfiles-and-scripts)
+        * [Clone this repo:](#clone-this-repo-1)
+        * [Run included script file and change to ssh:](#run-included-script-file-and-change-to-ssh)
+      - [Step 2, Install yaourt](#step-2-install-yaourt)
+      - [Step 3, Install i3blocks](#step-3-install-i3blocks)
+      - [Step 4, Install font rendering and System San Francisco font:](#step-4-install-font-rendering-and-system-san-francisco-font)
+        * [Infinality for better font rendering:](#infinality-for-better-font-rendering)
+        * [System San Francisco font:](#system-san-francisco-font)
+      - [Step 5, Install graphics drivers (Nvidia):](#step-5-install-graphics-drivers-nvidia)
+      - [Step 5 (X220), Install graphics drivers (intel):](#step-5-x220-install-graphics-drivers-intel)
+      - [Notes for X220](#notes-for-x220)
+
+## Mac OSX
 
 ### Requirements:
 <ul>
@@ -202,8 +229,6 @@ Give group wheel access to run sudo command:
 Un-comment the `%wheel ALL=(ALL) ALL` line.
 
 ### Setup:
-
-Edit `/etc/pacman.conf` and comment out the multilib mirror
 
 #### Requirements:
 

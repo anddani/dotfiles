@@ -64,7 +64,7 @@ if [[ $ARCH == "true" ]] ; then
     fi
 
     echo "CREATING FOLDERS..."
-    mkdir ~/Pictures
+    mkdir ~/Pictures ~/Documents
 
     # Update mirrors
     echo "UPDATING MIRRORS..."
