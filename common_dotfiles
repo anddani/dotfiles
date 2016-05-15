@@ -63,11 +63,11 @@ if [[ $ARCH == "true" ]] ; then
         CONFIG=".config-x220"
     fi
 
-    echo "CREATING FOLDERS..."
+    echo ":: Creating Folders..."
     mkdir ~/Pictures ~/Documents
 
     # Update mirrors
-    echo "UPDATING MIRRORS..."
+    echo ":: Updating Mirrors..."
     cat $HOME/.dotfiles/mirrors \
         | sudo tee -a /etc/pacman.conf >/dev/null
     sudo pacman -Syy
@@ -76,7 +76,7 @@ if [[ $ARCH == "true" ]] ; then
     sudo pacman -Syy
 
     # Install packages
-    echo "INSTALLING PACKAGES..."
+    echo ":: Installing Packages..."
     while read p; do
         echo $p
         # sudo pacman -S --noconfirm $p
@@ -96,12 +96,12 @@ if [[ $ARCH == "true" ]] ; then
 else
     # install homebrew
     if test ! $(which brew); then
-        echo "Installing Homebrew"
+        echo ":: Installing Homebrew"
         ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
         echo "...done"
     fi
 
-    echo "Check for updates for Homebrew"
+    echo ":: Check for updates for Homebrew"
     brew update
     echo "...done"
 
@@ -111,40 +111,40 @@ else
         # brew install $p
     done <packages-mac
 
-    echo "Installing tpm"
+    echo ":: Installing tpm"
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
     echo "...done"
 
-    echo "Installing virtualenv and virtualenvwrapper"
+    echo ":: Installing virtualenv and virtualenvwrapper"
     pip install virtualenv
     pip install virtualenvwrapper
     echo "...done"
     
-    echo "Cleaning up Homebrew"
+    echo ":: Cleaning up Homebrew"
     brew cleanup
     echo "...done"
 fi
 
 
-echo "Configure git username and email"
+echo ":: Configure git username and email"
 git config --global user.name "$GIT_NAME"
 git config --global user.email "$GIT_EMAIL"
 echo "...done"
 
-echo "Generate ssh keys"
+echo ":: Generate ssh keys"
 ssh-keygen -t rsa -b 4096 -C "$GIT_EMAIL"
 if test $(ssh-agent -s); then
     ssh-add ~/.ssh/id_rsa
 fi
 echo "...done"
 
-echo "Add your public key to your github account(s)"
-echo "Press RETURN to continue..."
+echo ":: Add your public key to your github account(s)"
+echo ":: Press RETURN to continue..."
 read nothing
 
 # Create symlinks
 if [[ $ARCH == "true" ]] ; then
-    echo "Creating symlinks"
+    echo ":: Creating symlinks"
     for f in $I3_FILES
     do
         ln -sf ~/.dotfiles/i3files/$f ~/$f
@@ -165,21 +165,21 @@ do
     ln -sf ~/.dotfiles/files/$f ~/$f
 done
 
-echo "Installing oh-my-zsh"
+echo ":: Installing oh-my-zsh"
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 echo "...done"
 
 # Install color scheme to iTerm2
 if [[ $ARCH == "false" ]] ; then
-    echo "Installing Monokai Color scheme"
+    echo ":: Installing Monokai Color scheme"
     git clone git://github.com/stephenway/monokai.terminal.git
     open ~/.monokai.terminal/Monokai.itermcolors
     echo "...done"
-    echo "Press RETURN to continue..."
+    echo ":: Press RETURN to continue..."
     read nothing
 fi
 
-echo "Installing Vundle"
+echo ":: Installing Vundle"
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 echo "...done"
 exit
