@@ -66,6 +66,7 @@ if [[ $ARCH == "true" ]] ; then
     echo ":: Creating Folders..."
     mkdir ~/Pictures ~/Documents
 
+
     # Update mirrors
     echo ":: Updating Mirrors..."
     cat $HOME/.dotfiles/mirrors \
@@ -133,9 +134,8 @@ echo "...done"
 
 echo ":: Generate ssh keys"
 ssh-keygen -t rsa -b 4096 -C "$GIT_EMAIL"
-if test $(ssh-agent -s); then
-    ssh-add ~/.ssh/id_rsa
-fi
+$(eval ssh-agent -s)
+ssh-add ~/.ssh/id_rsa
 echo "...done"
 
 echo ":: Add your public key to your github account(s)"
