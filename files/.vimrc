@@ -33,7 +33,7 @@ filetype plugin indent on
 let os=substitute(system('uname'), "\n", "", "")
 
 " Syntax highlighting
-syntax on
+syntax enable
 set encoding=utf-8
 
 " Remap <leader>
@@ -62,7 +62,7 @@ nmap <leader>up :so ~/.vimrc<CR>:PluginInstall<CR>
 nmap <leader>sr :OverCommandLine<CR>%s/
 
 " Copy to + register
-nmap <leader>y "+y
+map <leader>y "+y
 
 " Remap multiple cursors
 let g:multi_cursor_next_key='<C-o>'
@@ -86,8 +86,8 @@ set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline:h12
 
 " Molokai Color scheme
 set t_Co=256
-let g:molokai_original = 1
-colorscheme molokai
+colorscheme bluer
+" colorscheme molokai
 
 " Hybrid line number
 set relativenumber
