@@ -30,7 +30,6 @@ set $w10    "10: Steam "
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:System San Francisco Display 10
 
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -71,10 +70,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-# bindsym $mod+Shift+j move left
-# bindsym $mod+Shift+k move down
-# bindsym $mod+Shift+l move up
-# bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -111,9 +110,6 @@ bindsym $mod+space exec ~/.dotfiles/archscripts/swapkeyboardlayout
 # focus the parent container
 bindsym $mod+a focus parent
 
-# lock screen
-bindsym $mod+Shift+l exec i3lock -d -c 474747
-
 # focus the child container
 #bindsym $mod+d focus child
 
@@ -148,14 +144,8 @@ assign [class="mpv"] $w5
 assign [class="Skype"] $w9
 assign [class="Steam"] $w10
 
-# set volume
-# amixer set Master 5%+
-# amixer set Master toggle
-# bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master 5%+
-# bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master 5%-
-# bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle
-
-bindsym $mod+Shift+p $exec scrot "$HOME/Pictures/Screenshot_%Y-%m-%d_%H-%M-%S.png"
+bindsym --release $mod+p $exec scrot "$HOME/Pictures/Screenshot_%Y-%m-%d_%H-%M-%S.png"
+bindsym --release $mod+Shift+p $exec scrot -s "$HOME/Pictures/Screenshot_%Y-%m-%d_%H-%M-%S.png"
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -163,11 +153,6 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-
-# Pulse Audio controls
-# bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%   #increase sound volume
-# bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%   #decrease sound volume
-# bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle         # mute sound
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -195,8 +180,18 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-bindsym $mod+x exec amixer -D pulse sset Master 5%+
-bindsym $mod+z exec amixer -D pulse sset Master 5%-
+# choose xrandr displaymode
+set $mode_display Display mode (h) hdmi, (v) vga, (l) laptop
+mode "$mode_display" {
+    bindsym h $exec xrandr --output HDMI1 --mode 1366x768 --same-as LVDS1, mode "default"
+    bindsym v $exec xrandr --output LVDS1 --off --output DP1 --auto, mode "default"
+    bindsym l $exec xrandr --output LVDS1 --auto --output VGA1 --off --output HDMI1 --off, mode "default"
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+I mode "$mode_display"
 
 set $bg-color            #2f343f
 set $inactive-bg-color   #2f343f
@@ -210,21 +205,5 @@ client.focused          $bg-color           $bg-color          $text-color      
 client.unfocused        $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
 client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
 client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
-
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-bar {
-        status_command i3blocks -c ~/.config/i3blocks.conf
-        tray_output primary
-        position        top
-        colors {
-            background $bg-color
-                separator #757575
-                #                  border             background         text
-                focused_workspace  $bg-color          $bg-color          $text-color
-                inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
-                urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
-        }
-}
 
 exec_always feh --bg-scale $wallpaper

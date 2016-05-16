@@ -56,69 +56,35 @@ URxvt*termName: rxvt-unicode-256color
 #define _background 	#1f1f1f
 #define _cursorColor 	#8faf9f
 
-XTerm*color0 		: _color0
-XTerm*color1 		: _color1
-XTerm*color2 		: _color2
-XTerm*color3 		: _color3
-XTerm*color4 		: _color4
-XTerm*color5 		: _color5
-XTerm*color6 		: _color6
-XTerm*color7 		: _color7
-XTerm*color8 		: _color8
-XTerm*color9 		: _color9
-XTerm*color10 		: _color10
-XTerm*color11 		: _color11
-XTerm*color12 		: _color12
-XTerm*color13 		: _color13
-XTerm*color14 		: _color14
-XTerm*color15 		: _color15
-XTerm*colorBD 		: _colorBD
-XTerm*colorIT 		: _colorIT
-XTerm*colorUL 		: _colorUL
-XTerm*foreground 	: _foreground
-XTerm*background 	: _background
-XTerm*cursorColor 	: _cursorColor
 
-
-! URxvt*color0 		: _color0
-! URxvt*color1 		: _color1
-! URxvt*color2 		: _color2
-! URxvt*color3 		: _color3
-! URxvt*color4 		: _color4
-! URxvt*color5 		: _color5
-! URxvt*color6 		: _color6
-! URxvt*color7 		: _color7
-! URxvt*color8 		: _color8
-! URxvt*color9 		: _color9
-! URxvt*color10 		: _color10
-! URxvt*color11 		: _color11
-! URxvt*color12 		: _color12
-! URxvt*color13 		: _color13
-! URxvt*color14 		: _color14
-! URxvt*color15 		: _color15
-! URxvt*colorBD 		: _colorBD
-! URxvt*colorIT 		: _colorIT
-! URxvt*colorUL 		: _colorUL
-! URxvt*foreground 	: _foreground
-! URxvt*background 	: _background
-URxvt*cursorColor 	: _cursorColor
-
-
-URxvt*background: #101010
-URxvt*foreground: #d0d0d0
-URxvt*color0: #101010
-URxvt*color1: #960050
-URxvt*color2: #66aa11
-URxvt*color3: #c47f2c
-URxvt*color4: #30309b
-URxvt*color5: #7e40a5
-URxvt*color6: #3579a8
-URxvt*color7: #9999aa
-URxvt*color8: #303030
-URxvt*color9: #ff0090
-URxvt*color10: #80ff00
-URxvt*color11: #ffba68
-URxvt*color12: #5f5fee
-URxvt*color13: #bb88dd
-URxvt*color14: #4eb4fa
-URxvt*color15: #d0d0d0
+*.foreground:   #c2c2b0
+*.background:   #222222
+*.cursorColor:  #c2c2b0
+! black
+*.color0:       #222222
+*.color8:       #272822
+! red
+*.color1:       #aa4450
+*.color9:       #ff6a6a
+! green
+*.color2:       #719611
+*.color10:      #b1d631
+! yellow
+*.color3:       #ff9800
+*.color11:      #87875f
+! blue
+*.color4:       #6688aa
+*.color12:      #90b0d1
+! magenta
+*.color5:       #8f6f8f
+*.color13:      #8181a6
+! cyan
+*.color6:       #528b8b
+*.color14:      #87ceeb
+! white
+*.color7:       #d3d3d3
+*.color15:      #c1cdc1
+! others
+URxvt.colorIT:  #719611
+URxvt.colorBD:  #d3d3d3
+URxvt.colorUL:  #528b8b

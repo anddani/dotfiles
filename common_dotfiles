@@ -1,0 +1,192 @@
+#!/bin/bash
+
+###############################################
+#                                             #
+#    Bash script for dotfiles and packages    #
+#    installation.                            #
+#                                             #
+#    * MacOSX                                 #
+#    * Arch Linux (Desktop and Lenovo X220)   #
+#                                             #
+#    Run script as following:                 #
+#                                             #
+#                                             #
+###############################################
+
+ARCH="true"
+COMMON_FILES=".bash_profile .bashrc .tmux.conf .vim .vimrc .zshrc"
+DESKTOP="true"
+I3_FILES=".Xdefaults .xinitrc .Xmodmap .Xresources"
+PROGRAM_NAME="common_dotfiles"
+
+# Display help
+if [[ $# -eq 0 ]] ; then
+    echo "usage: $PROGRAM_NAME [options]"
+    echo "  -e <Github email>    (Your registered Github email), Required"
+    echo "  -l                   (Install for lenovo x220), Optional"
+    echo "  -m                   (Install for Mac OSX), Optional"
+    echo "  -u <Github username> (Your registered Github username), Required"
+    exit 1
+fi
+
+# Extract parameters
+while getopts "e:lmu:" opt ; do
+    case $opt in
+        e) GIT_EMAIL="$OPTARG"
+        ;;
+        l) DESKTOP="false" # If on arch, install on lenovo x220
+        ;;
+        m) ARCH="false" # Install for Mac
+        ;;
+        u) GIT_USERNAME="$OPTARG"
+        ;;
+        \?) echo "Invalid option -$OPTARG" ; exit 1
+        ;;
+    esac
+done
+
+if [[ -z $GIT_USERNAME ]] ; then
+    echo "You must provide [-u Github username]"
+    exit 1
+fi
+
+if [[ -z $GIT_EMAIL ]] ; then
+    echo "You must provide [-e Github email]"
+    exit 1
+fi
+
+# install packages
+if [[ $ARCH == "true" ]] ; then
+    if [[ $DESKTOP == "true" ]] ; then
+        CONFIG=".config"
+    else
+        CONFIG=".config-x220"
+    fi
+
+    echo ":: Creating Folders..."
+    mkdir ~/Pictures ~/Documents
+
+
+    # Update mirrors
+    echo ":: Updating Mirrors..."
+    cat $HOME/.dotfiles/mirrors \
+        | sudo tee -a /etc/pacman.conf >/dev/null
+    sudo pacman -Syy
+    sudo pacman-key -r 962DDE58
+    sudo pacman-key --lsign-key 962DDE58
+    sudo pacman -Syy
+
+    # Install packages
+    echo ":: Installing Packages..."
+    while read p; do
+        echo $p
+        # sudo pacman -S --noconfirm $p
+    done <packages
+
+    if [[ $DESKTOP == "true" ]] ; then
+        while read p; do
+            echo $p
+            # sudo pacman -S --noconfirm $p
+        done <packages-desktop
+    else
+        while read p; do
+            echo $p
+            # sudo pacman -S --noconfirm $p
+        done <packages-x220
+    fi
+else
+    # install homebrew
+    if test ! $(which brew); then
+        echo ":: Installing Homebrew"
+        ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+        echo "...done"
+    fi
+
+    echo ":: Check for updates for Homebrew"
+    brew update
+    echo "...done"
+
+    # install mac packages
+    while read p; do
+        echo $p
+        # brew install $p
+    done <packages-mac
+
+    echo ":: Installing tpm"
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    echo "...done"
+
+    echo ":: Installing virtualenv and virtualenvwrapper"
+    pip install virtualenv
+    pip install virtualenvwrapper
+    echo "...done"
+    
+    echo ":: Cleaning up Homebrew"
+    brew cleanup
+    echo "...done"
+fi
+
+
+echo ":: Configure git username and email"
+git config --global user.name "$GIT_NAME"
+git config --global user.email "$GIT_EMAIL"
+echo "...done"
+
+echo ":: Generate ssh keys"
+ssh-keygen -t rsa -b 4096 -C "$GIT_EMAIL"
+$(eval ssh-agent -s)
+ssh-add ~/.ssh/id_rsa
+echo "...done"
+
+echo ":: Add your public key to your github account(s)"
+echo ":: Press RETURN to continue..."
+read nothing
+
+# Create symlinks
+if [[ $ARCH == "true" ]] ; then
+    echo ":: Creating symlinks"
+    for f in $I3_FILES
+    do
+        ln -sf ~/.dotfiles/i3files/$f ~/$f
+    done
+    ln -sf ~/.dotfiles/.fonts ~/.fonts
+    ln -sf ~/.dotfiles/$CONFIG ~/.config
+    sudo ln -s $HOME/.dotfiles/archscripts/clipboard /usr/lib/urxvt/perl/clipboard
+
+    # udev rules
+    if [[ $DESKTOP == "false" ]] ; then
+        sudo cp $HOME/.dotfiles/archconfigs/99-lowbat.rules \
+                /etc/udev/rules.d/99-lowbat.rules
+    fi
+
+    echo "...done"
+
+else
+    for f in $MAC_FILES
+    do
+        ln -sf ~/.dotfiles/i3files/$f ~/$f
+    done
+fi
+for f in $COMMON_FILES
+do
+    ln -sf ~/.dotfiles/files/$f ~/$f
+done
+
+echo ":: Installing oh-my-zsh"
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+echo "...done"
+
+# Install color scheme to iTerm2
+if [[ $ARCH == "false" ]] ; then
+    echo ":: Installing Monokai Color scheme"
+    git clone git://github.com/stephenway/monokai.terminal.git
+    open ~/.monokai.terminal/Monokai.itermcolors
+    echo "...done"
+    echo ":: Press RETURN to continue..."
+    read nothing
+fi
+
+echo ":: Installing Vundle"
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+echo "...done"
+exit

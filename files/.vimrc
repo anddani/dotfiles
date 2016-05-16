@@ -7,7 +7,6 @@ call vundle#begin()
 
 " include plugins
 " Plugin 'VimVundle/Vundle.vim'
-" Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/nerdtree'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
@@ -19,7 +18,6 @@ Plugin 'tpope/vim-surround'
 Plugin 'Lokaltog/vim-powerline'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'lervag/vimtex'
-" Plugin 'LaTeX-Box-Team/LaTeX-Box'
 Plugin 'mattn/gist-vim'
 Plugin 'mattn/webapi-vim'
 Plugin 'klen/python-mode'
@@ -35,7 +33,7 @@ filetype plugin indent on
 let os=substitute(system('uname'), "\n", "", "")
 
 " Syntax highlighting
-syntax on
+syntax enable
 set encoding=utf-8
 
 " Remap <leader>
@@ -64,7 +62,7 @@ nmap <leader>up :so ~/.vimrc<CR>:PluginInstall<CR>
 nmap <leader>sr :OverCommandLine<CR>%s/
 
 " Copy to + register
-nmap <leader>y "+y
+map <leader>y "+y
 
 " Remap multiple cursors
 let g:multi_cursor_next_key='<C-o>'
@@ -88,8 +86,8 @@ set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline:h12
 
 " Molokai Color scheme
 set t_Co=256
-let g:molokai_original = 1
-colorscheme molokai
+colorscheme bluer
+" colorscheme molokai
 
 " Hybrid line number
 set relativenumber

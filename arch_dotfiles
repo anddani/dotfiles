@@ -30,7 +30,7 @@ ABS_PATH="/home/$(whoami)"
 # scrot - Screenshot
 IMPORTANT="vim tmux dmenu gedit firefox htop evince thunar unzip mpv feh scrot rxvt-unicode"
 GRAPHICAL="mesa xorg xorg-twm xorg-xinit"
-I3="i3"
+I3="i3 i3blocks"
 AUDIO="alsa-utils pulseaudio pulseaudio-alsa lib32-alsa-plugins lib32-libpulse"
 OTHER="cmake openssh keychain lxappearance bind-tools xclip xautolock lm_sensors xsel lib32-mpg123"
 PYTHON="python python-virtualenv python-virtualenvwrapper python2-sip python2-pyqt4"

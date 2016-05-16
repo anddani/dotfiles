@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# If we are on the laptop (has tlp installed)
+if hash tlp 2>/dev/null; then
+    xautolock -detectsleep -time 20 -locker "i3lock -d -c 474747; systemctl suspend"
+fi

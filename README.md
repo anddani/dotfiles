@@ -1,8 +1,24 @@
 # Dotfiles
 
-## Mac OS X
+- [Dotfiles](#dotfiles)
+  * [Mac OSX](#mac-osx)
+    + [Requirements](#requirements)
+    + [NTFS Compatibility](#ntfs-compatibility)
+  * [Arch Linux](#arch-linux)
+    + [Installation](#installation)
+    + [Setup](#setup)
+      - [Requirements](#requirements-1)
+      - [Step 1, Install packages, dotfiles and scripts](#step-1-install-packages-dotfiles-and-scripts)
+      - [Step 2, Install yaourt](#step-2-install-yaourt)
+      - [Step 3, Install i3blocks](#step-3-install-i3blocks)
+      - [Step 4, Install font rendering and System San Francisco font](#step-4-install-font-rendering-and-system-san-francisco-font)
+      - [Step 5, Install graphics drivers (Nvidia)](#step-5-install-graphics-drivers-nvidia)
+      - [Step 5 (X220), Install graphics drivers (intel)](#step-5-x220-install-graphics-drivers-intel)
+      - [Notes for X220](#notes-for-x220)
 
-### Requirements:
+## Mac OSX
+
+### Requirements
 <ul>
     <li>iTerm2 with font: Meslo LG M DZ Regular for Powerline 12pt for both Regular Font and Non-ASCII font (included in this repo)</li>
     <li>Git</li>
@@ -24,7 +40,7 @@ https://gist.github.com/mrpatiwi/8bca2f20b140150f1cbd
 
 ## Arch Linux
 
-### Installation:
+### Installation
 
 Most of this information is based on the [Arch Beginners' Guide](https://wiki.archlinux.org/index.php/beginners'_guide).
 
@@ -171,6 +187,12 @@ initrd  /initramfs-linux.img
 options root=/dev/sdX2 rw
 ```
 
+For laptop (with root at /dev/sdX3), set the `options` parameters to (for power saving):
+
+```
+options root=/dev/sdX3 rw quiet pcie_aspm=force i915.i915_enable_rc6=1 i915.i915_enable_fbc=1 i915.lvds_downclock=1 acpi_backlight=intel_backlight
+```
+
 Exit arch-chroot, unmount the disks and reboot the system:
 
     # exit
@@ -195,11 +217,9 @@ Give group wheel access to run sudo command:
 
 Un-comment the `%wheel ALL=(ALL) ALL` line.
 
-### Setup:
+### Setup
 
-Edit `/etc/pacman.conf` and comment out the multilib mirror
-
-#### Requirements:
+#### Requirements
 
 <ul>
     <li>zsh</li>
@@ -259,7 +279,11 @@ pacman-key --init
 pacman-key --populate archlinux
 ```
 
-#### Step 3, Install font rendering and System San Francisco font:
+#### Step 3, Install i3blocks
+
+    # yaourt -S i3blocks
+
+#### Step 4, Install font rendering and System San Francisco font
 
 ##### Infinality for better font rendering:
 
@@ -279,34 +303,14 @@ Download the font package from [here](https://github.com/supermarin/YosemiteSanF
 
 and move the fonts to the `.fonts` folder (create a folder called ~/.fonts if it doesn't exist).
 
-#### Step 4, Install graphics drivers (Nvidia):
+#### Step 5, Install graphics drivers (Nvidia)
 
     # pacman -S nvidia nvidia-libgl lib32-nvidia-libgl lib32-nvidia-utils
 
-#### Step 4 (X220), Install graphics drivers (intel):
+#### Step 5 (X220), Install graphics drivers (intel)
 
     # pacman -S xf86-video-intel
 
 #### Notes for X220
-Boot parameters in `/etc/default/grub`:
-
-```
-GRUB_CMDLINE_LINUX_DEFAULT="quiet pcie_aspm=force i915.i915_enable_rc6=1 i915.i915_enable_fbc=1 i915.lvds_downclock=1"
-```
-
-    AUR:
-    connman_dmenu-git
-    thinkfan
-
-    Official:
-    tlp
-    tp_smapi
-    acpi_call
-    gnome-keyring
-    connman
-    wpa_supplicant
-    acpi
 
 Enable tlp services `tlp.service` and `tlp-sleep.service` and disable `systemd-rfkill.service`
-
-Enable networkmanager service `NetworkManager.service`

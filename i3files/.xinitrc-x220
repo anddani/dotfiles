@@ -1,0 +1,9 @@
+#!/bin/bash
+xrdb -merge ~/.Xresources
+xmodmap ~/.Xmodmap
+/usr/bin/dropbox &
+~/.dotfiles/archscripts/autolock &
+~/.dotfiles/archscripts/lightsOn.sh 590 &
+cat $HOME/.config/i3/config.base \
+    $HOME/.config/i3/config.laptop > $HOME/.config/i3/config
+exec i3
