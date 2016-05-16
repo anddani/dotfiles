@@ -295,6 +295,7 @@ GRUB_CMDLINE_LINUX_DEFAULT="quiet pcie_aspm=force i915.i915_enable_rc6=1 i915.i9
 ```
 
     AUR:
+    connman_dmenu-git
     thinkfan
 
     Official:
@@ -302,8 +303,9 @@ GRUB_CMDLINE_LINUX_DEFAULT="quiet pcie_aspm=force i915.i915_enable_rc6=1 i915.i9
     tp_smapi
     acpi_call
     gnome-keyring
-    networkmanager
-    network-manager-applet
+    connman
+    wpa_supplicant
+    acpi
 
 Enable tlp services `tlp.service` and `tlp-sleep.service` and disable `systemd-rfkill.service`
 
