@@ -16,7 +16,6 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 5
 
 bar {
         status_command i3blocks -c ~/.config/i3blocks-x220.conf
-        tray_output primary
         position        top
         colors {
             background $bg-color
