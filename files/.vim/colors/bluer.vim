@@ -1,15 +1,4 @@
-"   ██████  ██████  ██   ██ ██████  █████   █████  ██████  █████  ██████
-"  ██░░░░  ██░░░░██░██  ░██░░██░░████░░░██ ██░░░██░░██░░████░░░██░░██░░██
-" ░░█████ ░██   ░██░██  ░██ ░██ ░░░██  ░░ ░███████ ░██ ░░░███████ ░██ ░░
-"  ░░░░░██░██   ░██░██  ░██ ░██   ░██   ██░██░░░░  ░██   ░██░░░░  ░██   
-"  ██████ ░░██████ ░░██████░███   ░░█████ ░░██████░███   ░░██████░███   
-" ░░░░░░   ░░░░░░   ░░░░░░ ░░░     ░░░░░   ░░░░░░ ░░░     ░░░░░░ ░░░   
-"  r  e  a  d     c  o  d  e     l  i  k  e     a     w  i  z  a  r  d 
-"
-" sourcerer by xero harrison (http://xero.nu)
-"  ├─ based on sorcerer by Jeet Sukumaran (http://jeetworks.org)
-"  └─ based on mustang by Henrique C. Alves (hcarvalhoalves@gmail.com)
-
+" Based on sourcerer https://github.com/xero/sourcerer.vim
 set background=dark
 hi clear
 
@@ -17,10 +6,9 @@ if exists("syntax_on")
   syntax reset
 endif
 
-let colors_name = "sourcerer"
+let colors_name = "bluer"
 
-
-"  █▓▒░ GUI colors
+" GUI colors
 hi Normal       guifg=#c2c2b0 guibg=#222222 gui=NONE
 hi ColorColumn  guifg=NONE    guibg=#1c1c1c
 hi Cursor       guifg=NONE    guibg=#626262 gui=NONE
@@ -43,8 +31,6 @@ hi NonText      guifg=#404050 guibg=NONE    gui=NONE
 
 hi Pmenu        guifg=#ffffff guibg=#444444
 hi PmenuSel     guifg=#000000 guibg=#b1d631
-"  hi           PmenuSbar     guifg=#ffffff guibg=#c1cdc1 gui=NONE
-"  hi           PmenuThumb    guifg=#ffffff guibg=#838b83 gui=NONE
 
 hi Question     guifg=#00ee00 guibg=NONE    gui=bold
 hi Search       guifg=#000000 guibg=#d6e770 gui=bold
@@ -105,7 +91,7 @@ hi pythonExClass    guifg=#996666 guibg=NONE gui=NONE
 hi pythonDecorator  guifg=#888555 guibg=NONE gui=NONE
 hi link pythonDecoratorFunction pythonDecorator
 
-"  █▓▒░ 256 colors 
+" 256 colors 
 hi Normal                 cterm=NONE             ctermbg=NONE  ctermfg=145
 hi ColorColumn            cterm=NONE             ctermbg=16    ctermfg=NONE
 hi Cursor                 cterm=NONE             ctermbg=241   ctermfg=fg
@@ -207,4 +193,3 @@ hi iCursor                cterm=NONE             ctermbg=210   ctermfg=16
 hi lCursor                cterm=NONE             ctermbg=145   ctermfg=234
 hi nCursor                cterm=NONE             ctermbg=NONE  ctermfg=145
 hi vCursor                cterm=NONE             ctermbg=201   ctermfg=16
-
