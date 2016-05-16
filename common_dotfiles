@@ -152,6 +152,13 @@ if [[ $ARCH == "true" ]] ; then
     ln -sf ~/.dotfiles/.fonts ~/.fonts
     ln -sf ~/.dotfiles/$CONFIG ~/.config
     sudo ln -s $HOME/.dotfiles/archscripts/clipboard /usr/lib/urxvt/perl/clipboard
+
+    # udev rules
+    if [[ $DESKTOP == "false" ]] ; then
+        sudo cp $HOME/.dotfiles/archconfigs/99-lowbat.rules \
+                /etc/udev/rules.d/99-lowbat.rules
+    fi
+
     echo "...done"
 
 else
