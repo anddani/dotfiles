@@ -162,10 +162,10 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
@@ -184,7 +184,7 @@ bindsym $mod+r mode "resize"
 set $mode_display Display mode (h) hdmi, (v) vga, (l) laptop
 mode "$mode_display" {
     bindsym h $exec xrandr --output HDMI1 --mode 1366x768 --same-as LVDS1, mode "default"
-    bindsym v $exec xrandr --output LVDS1 --off --output DP1 --auto, mode "default"
+    bindsym v exec ~/.dotfiles/archscripts/external_display VGA1, mode "default"
     bindsym l $exec xrandr --output LVDS1 --auto --output VGA1 --off --output HDMI1 --off, mode "default"
 
     bindsym Return mode "default"

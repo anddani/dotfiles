@@ -151,7 +151,8 @@ if [[ $ARCH == "true" ]] ; then
     done
     ln -sf ~/.dotfiles/.fonts ~/.fonts
     ln -sf ~/.dotfiles/$CONFIG ~/.config
-    sudo ln -s $HOME/.dotfiles/archscripts/clipboard /usr/lib/urxvt/perl/clipboard
+    sudo ln -s $HOME/.dotfiles/archscripts/clipboard \
+               /usr/lib/urxvt/perl/clipboard
 
     # udev rules
     if [[ $DESKTOP == "false" ]] ; then

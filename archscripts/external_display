@@ -1,0 +1,13 @@
+#!/bin/bash
+
+OUTPUT=$1
+LAPTOP="LVDS1"
+
+# Get the highest common resolution
+HIGHEST_RESOLUTION=$(xrandr | grep '^[ ]*[0-9]' | awk '{print $1}' | sort | uniq -d | head -n 1)
+
+if [[ -n $HIGHEST_RESOLUTION ]] ; then
+    xrandr --output $OUTPUT --mode $HIGHEST_RESOLUTION --same-as $LAPTOP
+fi
+
+exit
