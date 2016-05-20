@@ -20,6 +20,8 @@ lm_sensors
 lxappearance
 mesa
 mpv
+ncdu
+ntfs-3g
 openssh
 pulseaudio
 pulseaudio-alsa
@@ -34,6 +36,8 @@ tmux
 ttf-dejavu
 ttf-hack
 ttf-liberation
+udiskie
+udisks2
 unzip
 xautolock
 xclip
