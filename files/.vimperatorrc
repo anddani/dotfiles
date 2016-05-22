@@ -1,1 +1,2 @@
-:set editor=~/.dotfiles/scripts/mvim
+set editor=~/.dotfiles/scripts/mvim
+set toolbars=nonavigation,notabs

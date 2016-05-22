@@ -1,6 +1,7 @@
 #!/bin/bash
 xrdb -merge ~/.Xresources
 xmodmap ~/.Xmodmap
+xset -b
 udiskie -2 -s &
 /usr/bin/dropbox &
 ~/.dotfiles/archscripts/autolock &
