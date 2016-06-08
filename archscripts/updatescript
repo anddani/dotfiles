@@ -6,6 +6,6 @@ sudo pacman -Syu
 echo "...done"
 
 echo ":: Removing orphans..."
-sudo pacman -Rns $(pacman -Qtdq) &>/dev/null
+sudo pacman -Rns $(pacman -Qtdq)
 echo "...done"
 exit
