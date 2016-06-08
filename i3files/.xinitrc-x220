@@ -5,7 +5,7 @@ xset -b
 udiskie -2 -s &
 /usr/bin/dropbox &
 ~/.dotfiles/archscripts/autolock &
-~/.dotfiles/archscripts/lightsOn.sh 590 &
+~/.dotfiles/archscripts/lightson.sh 590 &
 cat $HOME/.config/i3/config.base \
     $HOME/.config/i3/config.laptop > $HOME/.config/i3/config
 exec i3
