@@ -72,6 +72,7 @@ else # Arch linux
 
     export NEO4J_HOME=$HOME/Documents/neo4j-community-3.0.0
     export PATH=$NEO4J_HOME/bin:$PATH
+    export PATH=$PATH:$(ruby -rubygems -e "puts Gem.user_dir")/bin
 
     alias space="df -h"
     alias archupdate="~/.dotfiles/archscripts/updatescript"
