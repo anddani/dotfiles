@@ -1,3 +1,5 @@
 set editor=~/.dotfiles/scripts/mvim
 set toolbars=nonavigation,notabs
 command! dt -description "Open Developer Tools" :emenu Tools.Web Developer.Browser Console
+command! toolsshow -description "Show Toolbar and Navigation bar" set toolbars=navigation,tabs
+command! toolshide -description "Hide Toolbar and Navigation bar" set toolbars=nonavigation,notabs
