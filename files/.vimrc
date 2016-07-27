@@ -1,4 +1,4 @@
-set nocompatible
+    set nocompatible
 filetype off
 
 " set runtime path and initialize
@@ -47,6 +47,11 @@ let g:gist_post_private = 1
 " python-mode
 let g:pymode_rope_completion = 0
 let g:pymode_folding = 0
+
+" snipmate
+let g:snipMate = {}
+let g:snipMate.scope_aliases = {}
+let g:snipMate.scope_aliases['cpp'] = 'cpp'
 
 " Hotkey to enter .vimrc
 nmap <leader>rc :tabnew ~/.vimrc<CR>
