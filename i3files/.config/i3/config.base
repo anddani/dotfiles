@@ -210,7 +210,7 @@ set $urgent-text         #F4BF75
 client.focused           $bg-color           $bg-color          $text-color      $bg-color
 client.focused_inactive  $inactive-border    $inactive-bg       $inactive-text   $inactive-bg
 client.unfocused         $unfocused-border   $unfocused-border  $unfocused-text  $unfocused-border
-client.urgent            $urgent-border      $urgent-bg         $urgent-color    $urgent-bg
+client.urgent            $urgent-bg          $urgent-bg         $text-color      $urgent-bg
 
 # client.focused          #404254 #404254 #FFFFFF #404254
 # client.focused_inactive #4F4E43 #49483E #BFBFBF #49483E
