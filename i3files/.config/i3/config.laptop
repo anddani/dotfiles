@@ -25,6 +25,6 @@ bar {
                 #                  border             background         text
                 focused_workspace  $bg-color          $bg-color          $text-color
                 inactive_workspace $bg-color          $bg-color          $inactive-text-color
-                urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
+                urgent_workspace   $urgent-bg         $urgent-bg         $text-color
         }
 }

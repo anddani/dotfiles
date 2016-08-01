@@ -202,7 +202,7 @@ set $inactive-text       #BFBFBF
 set $unfocused-border    #000000
 set $unfocused-text      #888888
 set $urgent-border       #662B32
-set $urgent-bg           #58252B
+set $urgent-bg           #E53935
 set $urgent-text         #F4BF75
 
 # window colors
