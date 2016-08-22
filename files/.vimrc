@@ -1,4 +1,4 @@
-    set nocompatible
+set nocompatible
 filetype off
 
 " set runtime path and initialize
@@ -214,3 +214,4 @@ set backspace=2
 
 " set tabspace for ruby
 autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
+
