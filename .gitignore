@@ -7,6 +7,8 @@
 
 i3files/.config/*
 !i3files/.config/i3*
+!i3files/.config/mpv
+i3files/.config/mpv/watch_later
 i3files/.config/i3/config
 
 files/.vim/bundle
