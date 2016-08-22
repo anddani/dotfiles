@@ -285,3 +285,12 @@ snippet ru
 	unauthorized(${1:param});
 snippet unless
 	(unless=${1:param});
+## Popup
+snippet popup
+	/**
+	 * @author ${1:AUTHOR} <`system("git config user.email")`>
+	 */
+
+	public class `vim_helper#Filename("$1")` {
+		${0}
+	}
