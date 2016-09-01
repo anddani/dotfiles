@@ -294,3 +294,18 @@ snippet popup
 	public class `vim_helper#Filename("$1")` {
 		${0}
 	}
+snippet popupm
+	import java.io.BufferedWriter;
+	import java.io.OutputStreamWriter;
+	import java.io.IOException;
+
+	public class `vim_helper#Filename("$1")` {
+		public static void main (String[] args) throws IOException {
+
+			Kattio io = new Kattio(System.in, System.out);
+			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+			${0}
+
+			bw.flush();
+		}
+	}
