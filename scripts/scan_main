@@ -1,0 +1,60 @@
+#!/bin/bash
+
+DEPSLIST=""
+FILELIST=""
+
+function remove_dups {
+    awk '{
+        while(++i<=NF)
+            printf (!a[$i]++) ? $i FS : "";
+            i=split("",a);
+            print ""
+        }'
+}
+
+function get_deps {
+    # if not in list of dependencies
+    if ! [[ $DEPSLIST =~ $1 ]]; then
+
+        DEPSLIST="$DEPSLIST $1"
+
+        # Get a list of dependencies for this file
+        DEPS=$(grep -Po '(?<=new )([a-zA-Z]+)' $1)
+
+        # For each dependency, recursively add dependencies
+        # if file exists
+        for d in $DEPS
+        do
+            FILE="${d}.java"
+
+            # echo "$1: $FILE"
+
+            if [[ -f $FILE ]]; then
+                FILELIST="$FILELIST $FILE"
+                get_deps $FILE
+            fi
+        done
+
+
+    fi
+
+}
+
+# find file with main function
+MAINFILE=$(grep -Pl 'main *\(.*\)' *.*)
+
+FILELIST="$FILELIST $MAINFILE"
+
+get_deps $MAINFILE
+
+FILELIST=$(echo $FILELIST | remove_dups)
+
+PROBLEM=$(sed -n 's/^.*problem:\([a-zA-Z0-9]*\)/\1/p' $MAINFILE)
+
+if [[ -n $PROBLEM ]]; then
+    PROBLEM="-p $PROBLEM"
+fi
+
+echo $PROBLEM
+
+# kattissubmit $PROBLEM $FILELIST
