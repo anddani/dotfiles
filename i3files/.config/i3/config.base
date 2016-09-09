@@ -218,3 +218,5 @@ client.urgent            $urgent-bg          $urgent-bg         $text-color     
 # client.urgent           #662B32 #58252B #F4BF75 #58252B
 
 exec_always feh --bg-scale $wallpaper
+
+$exec redshift

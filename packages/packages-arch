@@ -30,6 +30,7 @@ python-virtualenv
 python-virtualenvwrapper
 python2-pyqt4
 python2-sip
+redshift
 rxvt-unicode
 thunar
 tmux
