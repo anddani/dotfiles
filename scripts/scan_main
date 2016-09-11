@@ -55,6 +55,6 @@ if [[ -n $PROBLEM ]]; then
     PROBLEM="-p $PROBLEM"
 fi
 
-echo $PROBLEM
+echo $PROBLEM $FILELIST
 
 # kattissubmit $PROBLEM $FILELIST
