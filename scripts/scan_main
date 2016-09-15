@@ -70,7 +70,7 @@ fi
 
 
 # ADD KATTIS MANUALLY
-FILELIST="$FILELIST ../Kattis.java"
+FILELIST="$FILELIST ../Kattio.java"
 
 PROBLEM=$(sed -n 's/^.*problem:\([a-zA-Z0-9]*\)/\1/p' $MAINFILE)
 
@@ -80,4 +80,4 @@ fi
 
 echo $PROBLEM $FILELIST
 
-# kattissubmit $PROBLEM $FILELIST
+kattissubmit $PROBLEM $FILELIST
