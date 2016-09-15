@@ -219,4 +219,4 @@ client.urgent            $urgent-bg          $urgent-bg         $text-color     
 
 exec_always feh --bg-scale $wallpaper
 
-$exec redshift
+$exec redshift-gtk
