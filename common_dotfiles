@@ -64,7 +64,7 @@ if [[ $ARCH == "true" ]] ; then
     fi
 
     echo ":: Creating Folders..."
-    mkdir ~/Pictures ~/Documents
+    mkdir ~/Pictures ~/Documents ~/bin
 
 
     # Update mirrors
@@ -154,6 +154,9 @@ if [[ $ARCH == "true" ]] ; then
     ln -sf ~/.dotfiles/$CONFIG ~/.config
     sudo ln -s $HOME/.dotfiles/archscripts/clipboard \
                /usr/lib/urxvt/perl/clipboard
+
+    # Kattis submission helper
+    ln -sf ~/.dotfiles/scripts/scan_main ~/bin/scan_main
 
     # udev rules
     if [[ $DESKTOP == "false" ]] ; then
