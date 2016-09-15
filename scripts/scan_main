@@ -12,6 +12,7 @@ function remove_dups {
         }'
 }
 
+# Gets local includes
 function get_deps {
     # if not in list of dependencies
     if ! [[ $DEPSLIST =~ $1 ]]; then
@@ -27,8 +28,6 @@ function get_deps {
         do
             FILE="${d}.java"
 
-            # echo "$1: $FILE"
-
             if [[ -f $FILE ]]; then
                 FILELIST="$FILELIST $FILE"
                 get_deps $FILE
@@ -40,14 +39,38 @@ function get_deps {
 
 }
 
+# Gets dependencies not in javalib
+# function get_lib_deps {
+#
+# }
+
 # find file with main function
-MAINFILE=$(grep -Pl 'main *\(.*\)' *.*)
+if [[ $# -eq 0 ]] ; then
+    MAINFILE=$(grep -Pl 'main *\(.*\)' *.*)
+else
+    MAINFILE=$1
+fi
 
 FILELIST="$FILELIST $MAINFILE"
 
 get_deps $MAINFILE
 
 FILELIST=$(echo $FILELIST | remove_dups)
+
+# if library
+MAINTEXT=$(cat $MAINFILE)
+if [[ `grep package $MAINFILE` ]] ; then
+    PACKAGE=$(grep -Po '(?<=package )([a-zA-Z0-9.]+)' $MAINFILE)
+    for p in $(sed -n "s/^.*import.*$PACKAGE.\(.*\);/\1/p" $MAINFILE)
+    do
+        p=$(echo $p | sed 's/\./\//g')
+        FILELIST="$FILELIST ${p}.java"
+    done
+fi
+
+
+# ADD KATTIS MANUALLY
+FILELIST="$FILELIST ../Kattis.java"
 
 PROBLEM=$(sed -n 's/^.*problem:\([a-zA-Z0-9]*\)/\1/p' $MAINFILE)
 
