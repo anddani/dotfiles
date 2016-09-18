@@ -61,6 +61,7 @@ FILELIST=$(echo $FILELIST | remove_dups)
 MAINTEXT=$(cat $MAINFILE)
 if [[ `grep package $MAINFILE` ]] ; then
     PACKAGE=$(grep -Po '(?<=package )([a-zA-Z0-9.]+)' $MAINFILE)
+    MAINCLASS="-m ${PACKAGE}.${MAINFILE%.*}"
     for p in $(sed -n "s/^.*import.*$PACKAGE.\(.*\);/\1/p" $MAINFILE)
     do
         p=$(echo $p | sed 's/\./\//g')
@@ -78,6 +79,6 @@ if [[ -n $PROBLEM ]]; then
     PROBLEM="-p $PROBLEM"
 fi
 
-echo $PROBLEM $FILELIST
+echo $MAINCLASS $PROBLEM $FILELIST
 
-kattissubmit $PROBLEM $FILELIST
+kattissubmit $MAINCLASS $PROBLEM $FILELIST
