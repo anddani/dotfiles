@@ -1,5 +1,5 @@
 #!/bin/bash
-xrdb -merge ~/.Xresources
+[[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
 xmodmap ~/.Xmodmap
 xset -b
 udiskie -2 -s &

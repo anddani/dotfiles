@@ -5,11 +5,9 @@
 KL=$(setxkbmap -query | awk '/layout/{print $2}') 
 
 if [[ $KL == "us" ]] ; then
-    setxkbmap se
-    xmodmap ~/.Xmodmap
+    setxkbmap se && xmodmap ~/.Xmodmap
     exit 0
 else
-    setxkbmap us
-    xmodmap ~/.Xmodmap
+    setxkbmap us && xmodmap ~/.Xmodmap
     exit 0
 fi
