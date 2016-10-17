@@ -84,7 +84,7 @@ if [[ $MAINFILE =~ \.java ]] ; then
     FILELIST="$FILELIST ../Kattio.java"
 fi
 
-PROBLEM=$(sed -n 's/^.*problem *: *\([a-zA-Z0-9]*\)/\1/p' $MAINFILE)
+PROBLEM=$(sed -n 's/^.*problem *: *\([a-zA-Z0-9]*\).*/\1/p' $MAINFILE)
 
 if [[ -n $PROBLEM ]]; then
     PROBLEM="-p $PROBLEM"
