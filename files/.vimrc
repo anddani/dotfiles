@@ -36,6 +36,9 @@ let os=substitute(system('uname'), "\n", "", "")
 syntax enable
 set encoding=utf-8
 
+" List out autocomplete in ex-mode
+set wildmenu
+
 " Remap <leader>
 let mapleader=","
 
