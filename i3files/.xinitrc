@@ -1,5 +1,5 @@
 #!/bin/bash
-xrdb -merge ~/.Xresources
+[[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
 xmodmap ~/.Xmodmap
 udiskie -2 -s &
 /usr/bin/dropbox &
