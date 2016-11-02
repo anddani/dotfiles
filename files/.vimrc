@@ -7,23 +7,24 @@ call vundle#begin()
 
 " include plugins
 " Plugin 'VimVundle/Vundle.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
-Plugin 'tomtom/tcomment_vim'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'wincent/Command-T'
-Plugin 'tpope/vim-surround'
 Plugin 'Lokaltog/vim-powerline'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'anddani/vim-pairs'
 Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'garbas/vim-snipmate'
+Plugin 'klen/python-mode'
 Plugin 'lervag/vimtex'
 Plugin 'mattn/gist-vim'
 Plugin 'mattn/webapi-vim'
-Plugin 'klen/python-mode'
-Plugin 'terryma/vim-multiple-cursors'
 Plugin 'osyo-manga/vim-over'
+Plugin 'scrooloose/nerdtree'
+Plugin 'terryma/vim-multiple-cursors'
 Plugin 'tmux-plugins/vim-tmux'
+Plugin 'tomtom/tcomment_vim'
+Plugin 'tomtom/tlib_vim'
+Plugin 'tpope/vim-surround'
+Plugin 'wincent/Command-T'
 
 " Clojure
 Plugin 'tpope/vim-fireplace'
@@ -70,7 +71,7 @@ nmap <leader>sn :tabnew ~/.vim/after/snippets<CR>
 
 " Hotkey to source vimrc and install/update packages
 nmap <leader>ip :so ~/.vimrc<CR>:PluginInstall<CR>
-nmap <leader>up :so ~/.vimrc<CR>:PluginInstall<CR>
+nmap <leader>up :so ~/.vimrc<CR>:PluginUpdate<CR>
 
 " Quicker search and replace with vim-over
 nmap <leader>sr :OverCommandLine<CR>%s/
