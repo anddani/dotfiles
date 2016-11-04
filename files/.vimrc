@@ -26,6 +26,12 @@ Plugin 'tomtom/tlib_vim'
 Plugin 'tpope/vim-surround'
 Plugin 'wincent/Command-T'
 
+" Clojure
+Plugin 'tpope/vim-fireplace'
+Plugin 'tpope/vim-classpath'
+Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'vim-scripts/paredit.vim'
+
 " End initialization
 call vundle#end()
 filetype plugin indent on
@@ -218,4 +224,3 @@ set backspace=2
 
 " set tabspace for ruby
 autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
-
