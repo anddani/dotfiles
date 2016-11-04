@@ -10,7 +10,7 @@ call vundle#begin()
 Plugin 'Lokaltog/vim-powerline'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'anddani/vim-pairs'
+" Plugin 'anddani/vim-pairs'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'garbas/vim-snipmate'
 Plugin 'klen/python-mode'
