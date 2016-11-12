@@ -74,7 +74,9 @@ else # Arch linux
     export PATH=$NEO4J_HOME/bin:$PATH
     export PATH=$PATH:$(ruby -rubygems -e "puts Gem.user_dir")/bin
     export PATH="/usr/local/heroku/bin:$PATH"
-    export PATH="$HOME/bin:$PATH"
+    if [[ -d "$HOME/bin" ]] ; then
+        export PATH="$HOME/bin:$PATH"
+    fi
 
     alias space="df -h"
     alias archupdate="~/.dotfiles/archscripts/updatescript"
