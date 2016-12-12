@@ -2,7 +2,8 @@
 # LAPTOP SETTINGS
 #
 # Set laptop font
-font pango:System San Francisco Display 11
+font pango:System San Francisco Display 10
+# font pango:Hack 10
 
 # Lock screen
 bindsym $mod+Shift+o exec i3lock -d -c 474747
