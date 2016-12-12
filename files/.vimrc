@@ -168,6 +168,9 @@ let g:vimtex_enabled = 1
 if os == "Linux"
     let g:vimtex_view_general_viewer = 'evince' 
     " let g:vimtex_view_general_options = '-a Skim'
+
+    " Paste from clipboard with external command
+    map <leader>p :read! xsel --clipboard --output<CR>
 else
     let g:vimtex_view_general_viewer = 'open' 
     let g:vimtex_view_general_options = '-a Skim'
