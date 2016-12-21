@@ -27,6 +27,8 @@ else
     platform='mac'
 fi
 
+alias emacs="emacs -nw"
+
 # Tmux aliases
 alias tkill="tmux kill-session -t"
 alias tkills="tmux kill-server"
