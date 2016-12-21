@@ -16,3 +16,6 @@ files/.vim/bundle
 # emacs
 elpa
 auto-save-list
+*~
+\#*#
+.\#*
