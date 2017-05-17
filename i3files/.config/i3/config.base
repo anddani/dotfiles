@@ -12,7 +12,7 @@
 set $mod Mod1
 set $exec exec --no-startup-id
 
-set $wallpaper /home/algo/.wallpaper.jpg
+set $wallpaper /home/algo/.wallpaper.png
 
 set $w1     "1: Devel "
 set $w2     "2: Firefox "
@@ -181,10 +181,10 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # choose xrandr displaymode
-set $mode_display Display mode (h) hdmi, (v) vga, (l) laptop, (p) projector
+set $mode_display Display mode (a) auto, (h) hdmi, (l) laptop, (p) projector
 mode "$mode_display" {
+    bindsym a exec ~/.dotfiles/archscripts/external_display, mode "default"
     bindsym h $exec xrandr --output HDMI1 --mode 1366x768 --same-as LVDS1, mode "default"
-    bindsym v exec ~/.dotfiles/archscripts/external_display VGA1, mode "default"
     bindsym l $exec xrandr --output LVDS1 --auto --output VGA1 --off --output HDMI1 --off, mode "default"
     bindsym p $exec xrandr --output HDMI1 --mode 800x600 --same-as LVDS1, mode "default"
 
@@ -194,7 +194,8 @@ mode "$mode_display" {
 
 bindsym $mod+I mode "$mode_display"
 
-set $bg-color            #404254
+# set $bg-color            #404254
+set $bg-color            #112938
 set $text-color          #FFFFFF
 set $inactive-border     #4F4E43
 set $inactive-bg         #49483E

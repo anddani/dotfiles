@@ -1,8 +1,7 @@
 #!/bin/bash
 
-# TODO: Make it mirror on all connected screens
-
-OUTPUT=$1
+# Get second output that is not LVDS1 (laptop screen)
+OUTPUT=$(xrandr | grep -P '(?<!LVDS1) connected' | awk '{print $1}')
 LAPTOP="LVDS1"
 
 # Get the largest common resolution
@@ -16,6 +15,8 @@ for r in $RESOLUTIONS ; do
         LARGEST_RES=$r
     fi
 done
+
+echo "$OUTPUT $LARGEST_RES"
 
 if [[ -n $LARGEST_RES ]] ; then
     xrandr --output $LAPTOP --mode $LARGEST_RES --output $OUTPUT --mode $LARGEST_RES

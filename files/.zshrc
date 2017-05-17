@@ -5,6 +5,10 @@ export WORKON_HOME=$HOME/.virtualenvs
 
 export GOPATH=$HOME/go
 
+export EXJOBB_HOME=$HOME/Skola/Exjobb
+
+export LD_LIBRARY_PATH=/usr/lib/
+
 # Source virtualenvwrapper script
 VENVWRAP="virtualenvwrapper.sh"
 /usr/bin/which -a $VENVWRAP > /dev/null
@@ -53,6 +57,8 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
+source ~/.profile
+
 if [[ $platform == 'mac' ]] ; then
     source ~/.bin/tmuxinator.zsh
     source /usr/local/bin/virtualenvwrapper.sh
@@ -73,9 +79,12 @@ else # Arch linux
     eval $(keychain --eval --quiet)
 
     export NEO4J_HOME=$HOME/Documents/neo4j-community-3.0.0
+    export ECLIPSE_HOME=$HOME/eclipse
     export PATH=$NEO4J_HOME/bin:$PATH
     export PATH=$PATH:$(ruby -rubygems -e "puts Gem.user_dir")/bin
     export PATH="/usr/local/heroku/bin:$PATH"
+    export PATH=$PATH:$HOME/android-sdk/tools
+    export PATH=$PATH:$HOME/android-sdk/platform-tools
     if [[ -d "$HOME/bin" ]] ; then
         export PATH="$HOME/bin:$PATH"
     fi
@@ -114,3 +123,6 @@ PERL5LIB="/home/algo/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
 PERL_LOCAL_LIB_ROOT="/home/algo/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
 PERL_MB_OPT="--install_base \"/home/algo/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/algo/perl5"; export PERL_MM_OPT;
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"

@@ -1,16 +1,21 @@
 XTerm*faceName: DejaVu Sans Mono
 xterm*faceSize: 9
 
+URxvt.perl-ext-common: clipboard,resize-font
 ! Perl script for copying and pasting to clipboard
-URxvt.perl-ext-common: clipboard
 URxvt.keysym.Mod1-c: perl:clipboard:copy
 URxvt.keysym.Mod1-v: perl:clipboard:paste
+
+URxvt.resize-font.smaller: C-Down
+URxvt.resize-font.bigger: C-Up
 
 ! URxvt.iso14755: false
 ! URxvt.copyCommand:  xclip -i -selection clipboard
 ! URxvt.pasteCommand: xclip -o -selection clipboard
 
 URxvt*font: xft:Hack:size=10:antialias=true
+! URxvt*font: xft:Meslo LG M DZ Regular:size=10:antialias=true
+
 URxvt*scrollBar: false
 URxvt*termName: rxvt-unicode-256color
 
@@ -91,40 +96,40 @@ URxvt.colorUL:  #528b8b
 
 
 
-# # special
-# foreground      = #f8f8f2
-# foreground_bold = #f8f8f2
-# cursor          = #f8f8f2
-# background      = #404254
-# 
-# # black
-# color0  = #44475a
-# color8  = #44475a
-# 
-# # red
-# color1  = #FF3D7F
-# color9  = #FF3D7F
-# 
-# # green
-# color2  = #50fa7d
-# color10 = #50fa7d
-# 
-# # yellow
-# color3  = #f1fa8c
-# color11 = #f1fa8c
-# 
-# # blue
-# color4  = #8be9fd
-# color12 = #FF7AC6
-# 
-# # magenta
-# color5  = #FF7AC6
-# color13 = #FF7AC6
-# 
-# # cyan
-# color6  = #00FFF0
-# color14 = #00FFF0
-# 
-# # white
-# color7  = #707880
-# color15 = #c5c8c6
+! # special
+! foreground      = #f8f8f2
+! foreground_bold = #f8f8f2
+! cursor          = #f8f8f2
+! background      = #404254
+! 
+! # black
+! color0  = #44475a
+! color8  = #44475a
+! 
+! # red
+! color1  = #FF3D7F
+! color9  = #FF3D7F
+! 
+! # green
+! color2  = #50fa7d
+! color10 = #50fa7d
+! 
+! # yellow
+! color3  = #f1fa8c
+! color11 = #f1fa8c
+! 
+! # blue
+! color4  = #8be9fd
+! color12 = #FF7AC6
+! 
+! # magenta
+! color5  = #FF7AC6
+! color13 = #FF7AC6
+! 
+! # cyan
+! color6  = #00FFF0
+! color14 = #00FFF0
+! 
+! # white
+! color7  = #707880
+! color15 = #c5c8c6

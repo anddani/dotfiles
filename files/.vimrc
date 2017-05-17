@@ -26,11 +26,27 @@ Plugin 'tomtom/tlib_vim'
 Plugin 'tpope/vim-surround'
 Plugin 'wincent/Command-T'
 
-" Clojure
-Plugin 'tpope/vim-fireplace'
-Plugin 'tpope/vim-classpath'
-Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'JamshedVesuna/vim-markdown-preview'
+
+" Lisp
 Plugin 'vim-scripts/paredit.vim'
+" Plugin 'l04m33/vlime'
+Plugin 'kovisoft/slimv'
+
+" Clojure
+" Plugin 'tpope/vim-fireplace'
+" Plugin 'tpope/vim-classpath'
+" Plugin 'kien/rainbow_parentheses.vim'
+" Plugin 'vim-scripts/paredit.vim'
+
+" Haskell
+Plugin 'eagletmt/ghcmod-vim'
+Plugin 'Shougo/vimproc.vim'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'neovimhaskell/haskell-vim'
+
+let $PATH = $PATH . ':' . expand('~/.cabal/bin')
+
 
 " End initialization
 call vundle#end()
@@ -132,7 +148,7 @@ vno <up> <Nop>
 vno <left> <Nop>
 vno <right> <Nop>
 
-" Toggle NERDTree with C-n
+" Toggle NERDTree with C-t
 map <C-t> :NERDTreeToggle<CR>
 let NERDTreeIgnore = ['\.pyc$']
 
@@ -159,18 +175,28 @@ nmap <leader>sp :call SwitchSourceHeader()<CR>
 
 " VimTex
 nmap <leader>lmk :VimtexCompileToggle<CR>
+nmap <leader>le :VimtexError<CR>
 nmap <leader>lcl :VimtexStop<CR>:VimtexClean<CR>
-nmap <leader>lwc :VimtexWordCount<CR>
+nmap <leader>lwc :VimtexCountWords<CR>
 let g:vimtex_enabled = 1
+
+" Markdown preview
+let vim_markdown_preview_hotkey='<C-m>'
+
+" Default to tex (not plaintex)
+let g:tex_flavor='latex' 
 " let g:vimtex_fold_enabled = 1
 
 " OS specific
 if os == "Linux"
     let g:vimtex_view_general_viewer = 'evince' 
-    " let g:vimtex_view_general_options = '-a Skim'
 
     " Paste from clipboard with external command
     map <leader>p :read! xsel --clipboard --output<CR>
+
+    " Open repl in tmux
+    let g:slimv_swank_cmd = '! tmux new-window -d -n REPL-SBCL "sbcl --load ~/.vim/bundle/slimv/slime/start-swank.lisp"'
+
 else
     let g:vimtex_view_general_viewer = 'open' 
     let g:vimtex_view_general_options = '-a Skim'
@@ -190,6 +216,11 @@ nnoremap <C-n> :tabn<CR>
 nnoremap <C-p> :tabp<CR>
 inoremap <C-n> <Esc>:tabn<CR>
 inoremap <C-p> <Esc>:tabp<CR>
+
+" buffer manipulation
+noremap gN :bp<CR>
+noremap gn :bn<CR>
+noremap <leader>d :bd<CR>
 
 " hidden buffer
 set hidden
@@ -221,6 +252,17 @@ set splitright
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_alt_sep = '|'
+
+" Syntastic
+map <Leader>s :SyntasticToggleMode<CR>
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
 
 " Backspace
 set backspace=2

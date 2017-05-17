@@ -1,8 +1,10 @@
+cabal-install
+cmake
 coreutils
+ghc
 macvim
+python
+python3
 rbenv
 ruby-build
 tmux
-cmake
-python
-python3

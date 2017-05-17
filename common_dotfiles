@@ -1,23 +1,20 @@
 #!/bin/bash
 
-###############################################
-#                                             #
-#    Bash script for dotfiles and packages    #
-#    installation.                            #
-#                                             #
-#    * MacOSX                                 #
-#    * Arch Linux (Desktop and Lenovo X220)   #
-#                                             #
-#    Run script as following:                 #
-#                                             #
-#                                             #
-###############################################
+###################################################
+#                                                 #
+#    Bash script for dotfiles and packages        #
+#    installation.                                #
+#                                                 #
+#    * MacOSX                                     #
+#    * Arch Linux (Desktop and Lenovo X220)       #
+#                                                 #
+###################################################
 
-ARCH="true"
 COMMON_FILES=".bash_profile .bashrc .tmux.conf .vim .vimrc .zshrc"
 DESKTOP="true"
 I3_FILES=".Xdefaults .xinitrc .Xmodmap .Xresources"
 PROGRAM_NAME="common_dotfiles"
+OS=$(uname)
 
 # Display help
 if [[ $# -eq 0 ]] ; then
@@ -30,13 +27,11 @@ if [[ $# -eq 0 ]] ; then
 fi
 
 # Extract parameters
-while getopts "e:lmu:" opt ; do
+while getopts "e:lu:" opt ; do
     case $opt in
         e) GIT_EMAIL="$OPTARG"
         ;;
-        l) DESKTOP="false" # If on arch, install on lenovo x220
-        ;;
-        m) ARCH="false" # Install for Mac
+        l) DESKTOP="false" # Arch desktop or laptop (x220)
         ;;
         u) GIT_USERNAME="$OPTARG"
         ;;
@@ -55,9 +50,11 @@ if [[ -z $GIT_EMAIL ]] ; then
     exit 1
 fi
 
-# install packages
-if [[ $ARCH == "true" ]] ; then
-    if [[ $DESKTOP == "true" ]] ; then
+######################
+## install packages ##
+######################
+if [ "$OS" == "Linux" ] ; then
+    if [ "$DESKTOP" == "true" ] ; then
         CONFIG=".config"
     else
         CONFIG=".config-x220"
@@ -72,6 +69,8 @@ if [[ $ARCH == "true" ]] ; then
     cat $HOME/.dotfiles/mirrors \
         | sudo tee -a /etc/pacman.conf >/dev/null
     sudo pacman -Syy
+
+    # TODO: Remove installation of infinality fonts
     sudo pacman-key -r 962DDE58
     sudo pacman-key --lsign-key 962DDE58
     sudo pacman -Syy
@@ -107,9 +106,10 @@ else
     echo "...done"
 
     # install mac packages
+    brew tap homebrew/dupes
     while read p; do
         echo $p
-        # brew install $p
+        # brew install $p --override-system-vim --with-default-names
     done <packages-mac
 
     echo ":: Installing tpm"
@@ -139,12 +139,19 @@ $(eval ssh-agent -s)
 ssh-add ~/.ssh/id_rsa
 echo "...done"
 
-echo ":: Add your public key to your github account(s)"
+if [ "$OS" == "Linux" ] ; then
+    cat ~/.ssh/id_rsa.pub | xclip -selection clipboard
+else
+    cat ~/.ssh/id_rsa.pub | pbcopy
+fi
+echo ":: Public key copied to clipboard"
 echo ":: Press RETURN to continue..."
 read nothing
 
-# Create symlinks
-if [[ $ARCH == "true" ]] ; then
+#####################
+## Create symlinks ##
+#####################
+if [ "$OS" == "Linux" ] ; then
     echo ":: Creating symlinks"
     for f in $I3_FILES
     do
@@ -154,9 +161,6 @@ if [[ $ARCH == "true" ]] ; then
     ln -sf ~/.dotfiles/$CONFIG ~/.config
     sudo ln -s $HOME/.dotfiles/archscripts/clipboard \
                /usr/lib/urxvt/perl/clipboard
-
-    # Kattis submission helper
-    ln -sf ~/.dotfiles/scripts/scan_main ~/bin/scan_main
 
     # udev rules
     if [[ $DESKTOP == "false" ]] ; then
@@ -181,8 +185,10 @@ echo ":: Installing oh-my-zsh"
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 echo "...done"
 
-# Install color scheme to iTerm2
-if [[ $ARCH == "false" ]] ; then
+####################################
+## Install color scheme to iTerm2 ##
+####################################
+if [ "$OS" != "Linux" ] ; then # Change to if OS == Mac
     echo ":: Installing Monokai Color scheme"
     git clone git://github.com/stephenway/monokai.terminal.git
     open ~/.monokai.terminal/Monokai.itermcolors
@@ -194,4 +200,9 @@ fi
 echo ":: Installing Vundle"
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 echo "...done"
+
+echo ":: Downloading vim plugins"
+vim +PluginInstall +qall
+echo "...done"
+
 exit

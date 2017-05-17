@@ -248,11 +248,11 @@ Add the following to `/etc/pacman.conf`:
 SigLevel = Never
 Server = http://repo.archlinux.fr/$arch
 
-[infinality-bundle]
-Server = http://bohoomil.com/repo/$arch
+~~[infinality-bundle]~~
+~~Server = http://bohoomil.com/repo/$arch~~
 
-[infinality-bundle-multilib]
-Server = http://bohoomil.com/repo/multilib/$arch
+~~[infinality-bundle-multilib]~~
+~~Server = http://bohoomil.com/repo/multilib/$arch~~
 ```
 
 Sign the outdated key:
@@ -291,8 +291,9 @@ Refresh the mirrors:
     # pacman -Syy
 
 Download Infinality:
+    # https://gist.github.com/cryzed/e002e7057435f02cc7894b9e748c5671
 
-    # pacman -S infinality-bundle infinality-bundle-multilib
+    # ~~pacman -S infinality-bundle infinality-bundle-multilib~~
 
 ##### System San Francisco font:
 
