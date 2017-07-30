@@ -1,67 +1,41 @@
-(defvar emacs-dir "~/.emacs.d/"
-  "Emacs config directory")
+(setq inhibit-startup-message t)
 
-(defvar elpa-dir (concat emacs-dir "elpa/")
-  "Package directory")
+;; Fetch util functions
+(add-to-list 'load-path "~/.emacs.d/helper/")
+(require 'util-functions)
 
-(when (>= emacs-major-version 24)
-  (require 'package)
-  (package-initialize)
-  (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/")))
+;; Initial package setup
+(require 'package)
+(push '("marmalade" . "http://marmalade-repo.org/packages/") package-archives)
+(push '("melpa" . "http://melpa.org/packages/") package-archive)
+(package-initialize)
 
-(unless (file-exists-p elpa-dir)
-  (package-refresh-contents))
+;; Setup use-package
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+(require 'use-package)
+(setq use-package-always-ensure t)
 
-;; (package-initialize)
+;; Load packages dir
+(load-directory "~/.emacs.d/packages")
 
 ;; List of packages
-(defvar my-packages '(evil neotree fiplr evil-leader multi-term) "Default Packages")
+; (defvar my-packages '(evil neotree fiplr evil-leader multi-term) "Default Packages")
 
-(dolist (pkg my-packages)
-  (when (not (package-installed-p pkg))
-    (package-install pkg)))
+; (dolist (pkg my-packages)
+;   (use-package pkg
+;                :ensure t))
 
 ;; Move all backup files to separate directory
 (setq backup-directory-alist `(("." . "~/.emacs.d/emacs-backups")))
 
-;; LaTeX
-(setq TeX-auto-save t)
-(setq TeX-parse-self t)
-(setq TeX-PDF-mode t)
-(setq TeX-save-query nil)
-
-
-;; Vim key bindings
-(setq evil-want-C-u-scroll t) ; Allow C-u to move up half a screen
-
-(require 'evil)
-(evil-mode 1)
-(define-key evil-insert-state-map [escape] 'evil-normal-state)
-
-(add-to-list 'load-path "/some/path/neotree")
-(evil-define-key 'normal neotree-mode-map (kbd "TAB") 'neotree-enter)
-(evil-define-key 'normal neotree-mode-map (kbd "SPC") 'neotree-enter)
-(evil-define-key 'normal neotree-mode-map (kbd "q") 'neotree-hide)
-(evil-define-key 'normal neotree-mode-map (kbd "RET") 'neotree-enter)
-
-; (global-set-key (kbd "SPC") 'recenter-top-bottom)
-; (evil-define-key 'normal (kbd "SPC") 'recenter-top-bottom)
-
-(require 'neotree)
-(setq neo-smart-open t)
-
-(require 'evil-leader)
-(global-evil-leader-mode)
-(evil-leader/set-leader ",")
-(evil-leader/set-key
-  "e" 'neotree-toggle
-  "t" 'fiplr-find-file)
-(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
-(setq fiplr-ignored-globs '((directories (".git" ".svn"))
-			    (files ("*.jpg" "*.png" "*.zip" "*~" "*." "*.acn" "*.aux" "*.bbl" "*.blg" "*.dvi" "*.fdb_latexmk" "*.fls" "*.glg" "*.glo" "*.gls" "*.ist" "*.lof" "*.log" "*.lot" "*.pdf" "*.run.xml" "*.toc"))))
-; (require 'multi-term)
-; (setq multi-term-program "/usr/bin/zsh")
-
+;; TODO: Move to separate file
+; (require 'neotree)
+; (setq neo-smart-open t)
+; (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+; (setq fiplr-ignored-globs '((directories (".git" ".svn"))
+; 			    (files ("*.jpg" "*.png" "*.zip" "*~" "*." "*.acn" "*.aux" "*.bbl" "*.blg" "*.dvi" "*.fdb_latexmk" "*.fls" "*.glg" "*.glo" "*.gls" "*.ist" "*.lof" "*.log" "*.lot" "*.pdf" "*.run.xml" "*.toc"))))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

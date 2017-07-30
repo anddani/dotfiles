@@ -1,0 +1,8 @@
+#*
+#!.gitignore
+#!helper/
+#!packages/
+#!init.el
+
+auto-save-list
+elpa
