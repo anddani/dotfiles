@@ -7,7 +7,7 @@
 ;; Initial package setup
 (require 'package)
 (push '("marmalade" . "http://marmalade-repo.org/packages/") package-archives)
-(push '("melpa" . "http://melpa.org/packages/") package-archive)
+(push '("melpa" . "http://melpa.org/packages/") package-archives)
 (package-initialize)
 
 ;; Setup use-package
@@ -20,22 +20,8 @@
 ;; Load packages dir
 (load-directory "~/.emacs.d/packages")
 
-;; List of packages
-; (defvar my-packages '(evil neotree fiplr evil-leader multi-term) "Default Packages")
-
-; (dolist (pkg my-packages)
-;   (use-package pkg
-;                :ensure t))
-
 ;; Move all backup files to separate directory
 (setq backup-directory-alist `(("." . "~/.emacs.d/emacs-backups")))
-
-;; TODO: Move to separate file
-; (require 'neotree)
-; (setq neo-smart-open t)
-; (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
-; (setq fiplr-ignored-globs '((directories (".git" ".svn"))
-; 			    (files ("*.jpg" "*.png" "*.zip" "*~" "*." "*.acn" "*.aux" "*.bbl" "*.blg" "*.dvi" "*.fdb_latexmk" "*.fls" "*.glg" "*.glo" "*.gls" "*.ist" "*.lof" "*.log" "*.lot" "*.pdf" "*.run.xml" "*.toc"))))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
