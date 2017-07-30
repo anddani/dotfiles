@@ -16,8 +16,6 @@ files/.vim/plugin
 files/.vim/eclim
 
 # emacs
-elpa
-auto-save-list
 *~
 \#*#
 .\#*
