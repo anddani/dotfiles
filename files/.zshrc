@@ -89,6 +89,8 @@ else # Arch linux
     export PATH="/usr/local/heroku/bin:$PATH"
     export PATH=$PATH:$HOME/android-sdk/tools
     export PATH=$PATH:$HOME/android-sdk/platform-tools
+    export PATH=$PATH:$HOME/Documents/android-studio/bin
+
     if [[ -d "$HOME/bin" ]] ; then
         export PATH="$HOME/bin:$PATH"
     fi
