@@ -31,8 +31,6 @@ else
     platform='mac'
 fi
 
-alias emacs="emacs -nw"
-
 # Tmux aliases
 alias tkill="tmux kill-session -t"
 alias tkills="tmux kill-server"
@@ -57,25 +55,31 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
-source ~/.profile
+alias gitremovegone="git fetch --prune && git branch -vv | grep 'gone]' | sed 's/\*//' | awk '{print \$1}' | xargs git branch -D"
 
 if [[ $platform == 'mac' ]] ; then
-    source ~/.bin/tmuxinator.zsh
+    # source ~/.bin/tmuxinator.zsh
     source /usr/local/bin/virtualenvwrapper.sh
 
-    export PATH=$HOME/.rbenv/shims:$PATH
+    if which rbenv > /dev/null ; then
+        eval "$(rbenv init -)"
+    fi
     export JAVA_HOME=$(/usr/libexec/java_home)
     
     export GEM_HOME=$HOME/Software/ruby
     export PATH=$PATH:$HOME/Software/ruby/bin
 
     alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
+    alias emacs="/usr/local/Cellar/emacs/25.2/Emacs.app/Contents/MacOS/Emacs -nw"
     alias compiletomcat="/Library/Tomcat/bin/compile.sh"
     alias starttomcat="/Library/Tomcat/bin/startup.sh"
     alias stoptomcat="/Library/Tomcat/bin/shutdown.sh"
+    alias crowdin-cli="crowdin"
 
     alias nusmv="~/NuSMV-2.6.0-Darwin/bin/NuSMV"
 else # Arch linux
+    source ~/.profile
+
     eval $(keychain --eval --quiet)
 
     export NEO4J_HOME=$HOME/Documents/neo4j-community-3.0.0
@@ -107,7 +111,7 @@ fi
 # fi
 
 # ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
+export SSH_KEY_PATH="~/.ssh/id_rsa"
 
 # Enter virtualenv if in virtual environment
 if [ -n "$VIRTUAL_ENV" ]; then
@@ -125,4 +129,4 @@ PERL_MB_OPT="--install_base \"/home/algo/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/algo/perl5"; export PERL_MM_OPT;
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+# export PATH="$PATH:$HOME/.rvm/bin"

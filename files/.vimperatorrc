@@ -9,9 +9,9 @@ javascript <<EOF
 tab_active = false;
 function toggle_tab() {
     if (tab_active) {
-        liberator.execute('set toolbars=notabs');
+        liberator.execute('set toolbars=nonavigation,notabs');
     } else {
-        liberator.execute('set toolbars=tabs');
+        liberator.execute('set toolbars=navigation,tabs');
     }
     tab_active = !tab_active;
 }

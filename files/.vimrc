@@ -25,6 +25,7 @@ Plugin 'tomtom/tcomment_vim'
 Plugin 'tomtom/tlib_vim'
 Plugin 'tpope/vim-surround'
 Plugin 'wincent/Command-T'
+Plugin 'tpope/vim-fugitive'
 
 Plugin 'JamshedVesuna/vim-markdown-preview'
 
@@ -124,6 +125,9 @@ colorscheme bluer
 set relativenumber
 set number
 
+" vertical split for vimdiff
+set diffopt+=vertical
+
 " Maps keys to toggle line numbers
 
 nnoremap <F3> :NumbersToggle<CR>
@@ -174,11 +178,13 @@ nmap <leader>sp :call SwitchSourceHeader()<CR>
 " let g:Latexbox_Folding = 'yes'
 
 " VimTex
-nmap <leader>lmk :VimtexCompileToggle<CR>
+" nmap <leader>lmk :VimtexCompileToggle<CR>
+nmap <leader>lmk :VimtexCompile<CR>
 nmap <leader>le :VimtexError<CR>
 nmap <leader>lcl :VimtexStop<CR>:VimtexClean<CR>
 nmap <leader>lwc :VimtexCountWords<CR>
 let g:vimtex_enabled = 1
+let g:vimtex_compiler_latexmk = {'callback' : 0}
 
 " Markdown preview
 let vim_markdown_preview_hotkey='<C-m>'

@@ -26,6 +26,7 @@ if [[ $# -eq 0 ]] ; then
     exit 1
 fi
 
+echo $OS
 # Extract parameters
 while getopts "e:lu:" opt ; do
     case $opt in
@@ -148,6 +149,10 @@ echo ":: Public key copied to clipboard"
 echo ":: Press RETURN to continue..."
 read nothing
 
+echo ":: Installing oh-my-zsh"
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+echo "...done"
+
 #####################
 ## Create symlinks ##
 #####################
@@ -181,14 +186,10 @@ do
     ln -sf ~/.dotfiles/files/$f ~/$f
 done
 
-echo ":: Installing oh-my-zsh"
-sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-echo "...done"
-
 ####################################
 ## Install color scheme to iTerm2 ##
 ####################################
-if [ "$OS" != "Linux" ] ; then # Change to if OS == Mac
+if [ "$OS" == "Darwin" ] ; then
     echo ":: Installing Monokai Color scheme"
     git clone git://github.com/stephenway/monokai.terminal.git
     open ~/.monokai.terminal/Monokai.itermcolors
