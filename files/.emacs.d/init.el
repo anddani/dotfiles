@@ -1,4 +1,10 @@
+;; Setup emacs gui
 (setq inhibit-startup-message t)
+(global-linum-mode t)
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(toggle-scroll-bar -1)
+(blink-cursor-mode 0)
 
 ;; Fetch util functions
 (add-to-list 'load-path "~/.emacs.d/helper/")
