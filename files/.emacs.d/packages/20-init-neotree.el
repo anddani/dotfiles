@@ -1,6 +1,3 @@
-
-(require 'neotree)
-
 (use-package neotree
              :config
              (progn
