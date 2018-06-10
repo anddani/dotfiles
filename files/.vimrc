@@ -48,7 +48,6 @@ Plugin 'neovimhaskell/haskell-vim'
 
 let $PATH = $PATH . ':' . expand('~/.cabal/bin')
 
-
 " End initialization
 call vundle#end()
 filetype plugin indent on

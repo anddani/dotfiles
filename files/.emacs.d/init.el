@@ -6,6 +6,9 @@
 (toggle-scroll-bar -1)
 (blink-cursor-mode 0)
 
+(add-to-list 'exec-path "/usr/local/bin")
+(add-to-list 'exec-path (concat (getenv "HOME") "/.local/bin"))
+
 ;; Fetch util functions
 (add-to-list 'load-path "~/.emacs.d/helper/")
 (require 'util-functions)
@@ -29,20 +32,25 @@
 ;; Move all backup files to separate directory
 (setq backup-directory-alist `(("." . "~/.emacs.d/emacs-backups")))
 
-;; Color scheme
-(use-package dracula-theme
-  :init (load-theme 'dracula t))
+(helm-mode 1)
 
 (load-theme 'dracula t)
+
+(setq-default indent-tabs-mode nil)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(magit-pull-arguments nil)
  '(package-selected-packages
    (quote
-    (evil-magit json-mode dracula-theme evil-leader evil))))
+    (helm-config evil-magit json-mode dracula-theme evil-leader evil)))
+ '(safe-local-variable-values
+   (quote
+    ((haskell-process-use-ghci . t)
+     (haskell-indent-spaces . 4)))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

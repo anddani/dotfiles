@@ -70,13 +70,10 @@ if [[ $platform == 'mac' ]] ; then
     export PATH=$PATH:$HOME/Software/ruby/bin
 
     alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
-    alias emacs="/usr/local/Cellar/emacs/25.2/Emacs.app/Contents/MacOS/Emacs -nw"
-    alias compiletomcat="/Library/Tomcat/bin/compile.sh"
-    alias starttomcat="/Library/Tomcat/bin/startup.sh"
-    alias stoptomcat="/Library/Tomcat/bin/shutdown.sh"
-    alias crowdin-cli="crowdin"
+    alias emacs="/usr/local/Cellar/emacs/25.3/bin/emacs -nw"
 
     alias nusmv="~/NuSMV-2.6.0-Darwin/bin/NuSMV"
+    export PATH=$HOME/.local/bin:$PATH
 else # Arch linux
     source ~/.profile
 
@@ -100,6 +97,12 @@ else # Arch linux
     alias mountusb="sudo mount -t ntfs-3g /dev/sdb1 /mnt/ntfs"
     alias tmux="tmux -2"
     alias fightcade="python2 ~/bin/FightCade/main.py"
+
+    PATH="/home/algo/perl5/bin${PATH:+:${PATH}}"; export PATH;
+    PERL5LIB="/home/algo/perl4/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+    PERL_LOCAL_LIB_ROOT="/home/algo/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+    PERL_MB_OPT="--install_base \"/home/algo/perl5\""; export PERL_MB_OPT;
+    PERL_MM_OPT="INSTALL_BASE=/home/algo/perl5"; export PERL_MM_OPT;
 fi
 
 # You may need to manually set your language environment
@@ -123,12 +126,6 @@ export KEYTIMEOUT=1
 export EDITOR=vim
 bindkey -v
 bindkey '^[[Z' reverse-menu-complete
-
-PATH="/home/algo/perl5/bin${PATH:+:${PATH}}"; export PATH;
-PERL5LIB="/home/algo/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/home/algo/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/home/algo/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/home/algo/perl5"; export PERL_MM_OPT;
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 # export PATH="$PATH:$HOME/.rvm/bin"

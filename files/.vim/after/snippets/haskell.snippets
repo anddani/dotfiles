@@ -84,3 +84,9 @@ snippet let
 snippet where
 	where
 		${1:fn} = ${0:undefined}
+snippet aocmain
+	main :: IO ()
+	main = do
+		input <- readFile "inputs/`Filename()`"
+		print $ solveOne input
+		-- print $ solveTwo input
