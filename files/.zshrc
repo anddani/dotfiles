@@ -87,6 +87,7 @@ else # Arch linux
     export PATH=$PATH:$HOME/android-sdk/tools
     export PATH=$PATH:$HOME/android-sdk/platform-tools
     export PATH=$PATH:$HOME/Documents/android-studio/bin
+    export PATH=$HOME/.cabal/bin:$PATH
 
     if [[ -d "$HOME/bin" ]] ; then
         export PATH="$HOME/bin:$PATH"
