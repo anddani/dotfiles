@@ -19,6 +19,7 @@ myStatusBar = "conky -qc ~/.xmonad/conkyrc | dzen2 -x 1000 -ta r -fg '"++foregro
 main = do
     wsBar <- spawnPipe myWorkspaceBar
     statusBar <- spawnPipe myStatusBar
+    spawn "feh --bg-fill ~/.wallpaper.jpg"
     xmonad $ withUrgencyHook NoUrgencyHook $ defaultConfig
         { terminal          = myTerminal
         , modMask           = myModMask
