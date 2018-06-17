@@ -6,6 +6,8 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.UrgencyHook
 
+import XMonad.Layout.Gaps
+import XMonad.Layout.Spacing
 import XMonad.Layout.NoBorders
 
 import System.Exit
@@ -37,9 +39,10 @@ myBorderWidth   = 3
 
 myHandleEventHook = handleEventHook defaultConfig <+> docksEventHook
 
-myLayoutHook = smartBorders $ avoidStruts (tiled ||| Mirror tiled ||| noBorders Full)
-    where
-        tiled = Tall 1 (3/100) (1/2)
+myLayoutHook = gaps [(U, 20), (R, 10), (D, 10), (L, 10)] $
+    smartBorders $ avoidStruts $ (spacing 2 tiled ||| Mirror tiled ||| noBorders Full)
+        where
+          tiled = Tall 1 (3/100) (1/2)
 
 myManageHook :: ManageHook
 myManageHook = manageDocks <+> manageHook defaultConfig
