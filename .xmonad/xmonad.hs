@@ -66,8 +66,6 @@ addedKeys :: XConfig l -> [((KeyMask, KeySym), X ())]
 addedKeys conf @ XConfig { modMask = modm } =
     [ ((modm,               xK_space                ), spawn "rofi -modi drun -show drun")
     , ((modm,               xK_Return               ), spawn $ XMonad.terminal conf)
-    , ((modm,               xK_z                    ), spawn "amixer -q sset Master 5%-")
-    , ((modm,               xK_x                    ), spawn "amixer -q sset Master 5%+")
     , ((modm .|. shiftMask, xK_q                    ), kill)
     , ((modm .|. shiftMask, xK_e                    ), io $ exitWith ExitSuccess)
     , ((0,                  xF86XK_AudioLowerVolume ), spawn "amixer -q sset Master 5%-")
