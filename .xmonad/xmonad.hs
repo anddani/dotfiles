@@ -76,5 +76,5 @@ addedKeys conf @ XConfig { modMask = modm } =
     , ((0,                  xF86XK_MonBrightnessDown), spawn "~/.dotfiles/scripts/modify_brightness.pl down")
     ]
 
-background = "#000000"
-foreground = "#22EE11"
+background = "#FDF6E3"
+foreground = "#839496"
