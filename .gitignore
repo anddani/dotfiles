@@ -17,7 +17,6 @@ files/.vim/eclim
 
 *.o
 *.hi
-*.hs
 *.errors
 xmonad-x86_64-linux
 
