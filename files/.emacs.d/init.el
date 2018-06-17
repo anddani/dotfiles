@@ -5,6 +5,7 @@
 (tool-bar-mode -1)
 (toggle-scroll-bar -1)
 (blink-cursor-mode 0)
+(set-terminal-parameter nil 'background-mode 'light)
 
 (add-to-list 'exec-path "/usr/local/bin")
 (add-to-list 'exec-path (concat (getenv "HOME") "/.local/bin"))
@@ -33,8 +34,6 @@
 (setq backup-directory-alist `(("." . "~/.emacs.d/emacs-backups")))
 
 (helm-mode 1)
-
-(load-theme 'dracula t)
 
 (setq-default indent-tabs-mode nil)
 
