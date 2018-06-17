@@ -30,7 +30,7 @@ main = do
         , layoutHook        = myLayoutHook
         }
 
-myTerminal      = "xterm"
+myTerminal      = "st"
 myModMask       = mod1Mask
 myBorderWidth   = 3
 
