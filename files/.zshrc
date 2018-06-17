@@ -1,12 +1,8 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
-
 export WORKON_HOME=$HOME/.virtualenvs
-
 export GOPATH=$HOME/go
-
 export EXJOBB_HOME=$HOME/Skola/Exjobb
-
 export LD_LIBRARY_PATH=/usr/lib/
 
 # Source virtualenvwrapper script
@@ -79,6 +75,8 @@ else # Arch linux
 
     eval $(keychain --eval --quiet)
 
+    export LC_ALL=en_US.UTF-8
+    export LANG=en_US.UTF-8
     export NEO4J_HOME=$HOME/Documents/neo4j-community-3.0.0
     export ECLIPSE_HOME=$HOME/eclipse
     export PATH=$NEO4J_HOME/bin:$PATH
