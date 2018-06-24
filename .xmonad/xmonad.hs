@@ -9,6 +9,7 @@ import XMonad.Hooks.UrgencyHook
 import XMonad.Layout.Gaps
 import XMonad.Layout.Spacing
 import XMonad.Layout.NoBorders
+import XMonad.Hooks.EwmhDesktops
 
 import System.Exit
 
@@ -35,17 +36,22 @@ main = do
 
 myTerminal      = "st"
 myModMask       = mod1Mask
-myBorderWidth   = 3
+myBorderWidth   = 2
 
-myHandleEventHook = handleEventHook defaultConfig <+> docksEventHook
+myHandleEventHook = fullscreenEventHook
+    <+> docksEventHook
+    <+> handleEventHook defaultConfig
 
-myLayoutHook = gaps [(U, 20), (R, 10), (D, 10), (L, 10)] $
-    smartBorders $ avoidStruts $ (spacing 2 tiled ||| Mirror tiled ||| noBorders Full)
+myLayoutHook = avoidStruts
+    $ smartBorders
+    $ gaps [(U, 5), (D, 5), (R, 5), (L, 5)]
+    $ (tiled ||| Full)
         where
-          tiled = Tall 1 (3/100) (1/2)
+            tiled = smartSpacing 2 $ Tall 1 (3/100) (1/2)
 
 myManageHook :: ManageHook
-myManageHook = manageDocks <+> manageHook defaultConfig
+myManageHook = manageDocks
+    <+> manageHook defaultConfig
 
 myLogHook h       = dynamicLogWithPP $ defaultPP
     { ppOutput          = hPutStrLn h
