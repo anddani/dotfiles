@@ -68,7 +68,8 @@ removedKeys XConfig { modMask = modm } =
 
 addedKeys :: XConfig l -> [((KeyMask, KeySym), X ())]
 addedKeys conf @ XConfig { modMask = modm } =
-    [ ((modm,               xK_space                ), spawn "rofi -modi drun -show drun")
+    [ ((modm,               xK_Tab                  ), sendMessage NextLayout)
+    , ((modm,               xK_space                ), spawn "rofi -modi drun -show drun")
     , ((modm,               xK_Return               ), spawn $ XMonad.terminal conf)
     , ((modm .|. shiftMask, xK_q                    ), kill)
     , ((modm .|. shiftMask, xK_e                    ), io $ exitWith ExitSuccess)
@@ -81,3 +82,4 @@ addedKeys conf @ XConfig { modMask = modm } =
 
 background = "#FDF6E3"
 foreground = "#839496"
+
