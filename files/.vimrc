@@ -26,6 +26,8 @@ Plugin 'tomtom/tlib_vim'
 Plugin 'tpope/vim-surround'
 Plugin 'wincent/Command-T'
 Plugin 'tpope/vim-fugitive'
+Plugin 'altercation/vim-colors-solarized'
+
 
 Plugin 'JamshedVesuna/vim-markdown-preview'
 
@@ -117,8 +119,10 @@ set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline:h12
 
 " Molokai Color scheme
 set t_Co=256
-colorscheme bluer
+" colorscheme bluer
 " colorscheme molokai
+set background=dark
+colorscheme solarized
 
 " Hybrid line number
 set relativenumber
