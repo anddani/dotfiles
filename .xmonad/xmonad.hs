@@ -1,3 +1,5 @@
+import Data.List
+
 import XMonad
 import XMonad.Util.CustomKeys
 import XMonad.Util.Run
@@ -14,10 +16,6 @@ import XMonad.Hooks.EwmhDesktops
 import System.Exit
 
 import Graphics.X11.ExtraTypes.XF86
-
--- TODO: Add fonts?
-myWorkspaceBar = "dzen2 -dock -x 0 -y 0 -w 1000 -ta l -fg '"++foreground++"' -bg '"++background++"'"
-myStatusBar = "conky -qc ~/.xmonad/conkyrc | dzen2 -x 1000 -ta r -fg '"++foreground++"' -bg '"++background++"'"
 
 main = do
     wsBar <- spawnPipe myWorkspaceBar
@@ -44,7 +42,7 @@ myHandleEventHook = fullscreenEventHook
 
 myLayoutHook = avoidStruts
     $ smartBorders
-    $ gaps [(U, 5), (D, 5), (R, 5), (L, 5)]
+    $ gaps [(U, gap), (D, gap), (R, gap), (L, gap)]
     $ (tiled ||| Full)
         where
             tiled = smartSpacing 2 $ Tall 1 (3/100) (1/2)
@@ -87,6 +85,36 @@ addedKeys conf @ XConfig { modMask = modm } =
     , ((0,                  xF86XK_MonBrightnessDown), spawn "~/.dotfiles/scripts/modify_brightness.pl down")
     ]
 
-background = "#FDF6E3"
-foreground = "#839496"
+wrapWithTicks :: String -> String
+wrapWithTicks xs = '\'' : xs ++ "'"
 
+gap = 5
+screenWidth = 1920
+halfScreenWidth = screenWidth `div` 2
+background = "#FDF6E3"
+foreground = "#657B83"
+font = "xft:Raleway:size=12:antialias=true"
+
+myWorkspaceBar = unwords
+  [ "dzen2"
+  , "-dock"
+  , "-x", show gap
+  , "-w", show $ halfScreenWidth
+  , "-ta", "l"
+  , "-fn", wrapWithTicks font
+  , "-fg", wrapWithTicks foreground
+  , "-bg", wrapWithTicks background
+  ]
+
+myStatusBar = unwords
+  [ "conky"
+  , "-qc", "~/.xmonad/conkyrc"
+  , "|"
+  , "dzen2"
+  , "-x", show $ halfScreenWidth + gap
+  , "-w", show $ halfScreenWidth - 2 * gap
+  , "-ta", "r"
+  , "-fn", wrapWithTicks font
+  , "-fg", wrapWithTicks foreground
+  , "-bg", wrapWithTicks background
+  ]
