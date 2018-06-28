@@ -79,6 +79,7 @@ addedKeys conf @ XConfig { modMask = modm } =
     , ((modm,               xK_Return               ), spawn $ XMonad.terminal conf)
     , ((modm .|. shiftMask, xK_q                    ), kill)
     , ((modm .|. shiftMask, xK_e                    ), io $ exitWith ExitSuccess)
+    , ((modm .|. shiftMask, xK_c                    ), spawn "emacs ~/.xmonad/xmonad.hs")
     , ((0,                  xF86XK_AudioLowerVolume ), spawn "amixer -q sset Master 5%-")
     , ((0,                  xF86XK_AudioRaiseVolume ), spawn "amixer -q sset Master 5%+")
     , ((0,                  xF86XK_AudioMute        ), spawn "amixer set Master toggle")
