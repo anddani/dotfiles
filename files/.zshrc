@@ -77,11 +77,6 @@ else # Arch linux
 
     export LC_ALL=en_US.UTF-8
     export LANG=en_US.UTF-8
-    export NEO4J_HOME=$HOME/Documents/neo4j-community-3.0.0
-    export ECLIPSE_HOME=$HOME/eclipse
-    export PATH=$NEO4J_HOME/bin:$PATH
-    export PATH=$PATH:$(ruby -rubygems -e "puts Gem.user_dir")/bin
-    export PATH="/usr/local/heroku/bin:$PATH"
     export PATH=$PATH:$HOME/android-sdk/tools
     export PATH=$PATH:$HOME/android-sdk/platform-tools
     export PATH=$PATH:$HOME/Documents/android-studio/bin
@@ -96,12 +91,6 @@ else # Arch linux
     alias mountusb="sudo mount -t ntfs-3g /dev/sdb1 /mnt/ntfs"
     alias tmux="tmux -2"
     alias fightcade="python2 ~/bin/FightCade/main.py"
-
-    PATH="/home/algo/perl5/bin${PATH:+:${PATH}}"; export PATH;
-    PERL5LIB="/home/algo/perl4/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-    PERL_LOCAL_LIB_ROOT="/home/algo/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-    PERL_MB_OPT="--install_base \"/home/algo/perl5\""; export PERL_MB_OPT;
-    PERL_MM_OPT="INSTALL_BASE=/home/algo/perl5"; export PERL_MM_OPT;
 fi
 
 # You may need to manually set your language environment
