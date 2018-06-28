@@ -12,10 +12,10 @@ conky.config = {
 }
 
 conky.text = [[
-    ^ca(1,$HOME/.xmonad/sc $HOME/.xmonad/scripts/dzen_network.sh)   ^fg(\#636e74)${execi 2 $HOME/.xmonad/scripts/bar_wifi.sh} ^fg(\#bea492)${wireless_essid wlan0}   ^ca()\
-    ^ca(1,$HOME/.xmonad/sc $HOME/.xmonad/scripts/dzen_battery.sh)   ^fg(\#636e74)${execi 2 $HOME/.xmonad/scripts/bar_battery.sh}^fg(\#bea492)   ^ca()\
-    ^ca(1,$HOME/.xmonad/sc $HOME/.xmonad/scripts/dzen_date.sh)   ^fg(\#636e74)^i($HOME/.xmonad/icons/clock.xbm) ^fg(\#bea492)${time %H:%M}   ^ca()\
+    ^ca(1,$HOME/.xmonad/sc $HOME/.xmonad/scripts/dzen_network.sh)   ^fg(\#636e74)${execi 2 $HOME/.xmonad/scripts/bar_wifi.sh} ^fg(\#657b83)${wireless_essid wlan0}   ^ca()\
+    ^ca(1,$HOME/.xmonad/sc $HOME/.xmonad/scripts/dzen_battery.sh)   ^fg(\#636e74)${execi 2 $HOME/.xmonad/scripts/bar_battery.sh}^fg(\#657b83)   ^ca()\
+    ^ca(1,$HOME/.xmonad/sc $HOME/.xmonad/scripts/dzen_date.sh)   ^fg(\#636e74)^i($HOME/.xmonad/icons/clock.xbm) ^fg(\#657b83)${time %H:%M}   ^ca()\
 ]];
--- ^ca(1,$HOME/.xmonad/sc $HOME/.xmonad/scripts/dzen_vol.sh)   ^fg(\#636e74)${execi 2 $HOME/.xmonad/scripts/bar_vol.sh}^fg(\#bea492)   ^ca()\
--- ^ca(1,$HOME/.xmonad/sc $HOME/.xmonad/scripts/dzen_hardware.sh)   ^fg(\#636e74)${execi 2 $HOME/.xmonad/scripts/bar_ram.sh}^fg(\#bea492)   ^ca()\
--- ^ca(1,$HOME/.xmonad/sc $HOME/.xmonad/scripts/dzen_log.sh)^fg(\#626262)^i($HOME/.xmonad/icons/info_03.xbm)^fg(\#bea492)^ca()
+-- ^ca(1,$HOME/.xmonad/sc $HOME/.xmonad/scripts/dzen_vol.sh)   ^fg(\#636e74)${execi 2 $HOME/.xmonad/scripts/bar_vol.sh}^fg(\#657b83)   ^ca()\
+-- ^ca(1,$HOME/.xmonad/sc $HOME/.xmonad/scripts/dzen_hardware.sh)   ^fg(\#636e74)${execi 2 $HOME/.xmonad/scripts/bar_ram.sh}^fg(\#657b83)   ^ca()\
+-- ^ca(1,$HOME/.xmonad/sc $HOME/.xmonad/scripts/dzen_log.sh)^fg(\#626262)^i($HOME/.xmonad/icons/info_03.xbm)^fg(\#657b83)^ca()
