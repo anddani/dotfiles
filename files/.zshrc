@@ -7,7 +7,7 @@ export LD_LIBRARY_PATH=/usr/lib/
 
 # Source virtualenvwrapper script
 VENVWRAP="virtualenvwrapper.sh"
-/usr/bin/which -a $VENVWRAP > /dev/null
+/usr/bin/which -a $VENVWRAP &> /dev/null
 if [ $? -eq 0 ]; then
     VENVWRAP=`/usr/bin/which $VENVWRAP`
     source $VENVWRAP
@@ -71,7 +71,9 @@ if [[ $platform == 'mac' ]] ; then
     alias nusmv="~/NuSMV-2.6.0-Darwin/bin/NuSMV"
     export PATH=$HOME/.local/bin:$PATH
 else # Arch linux
-    source ~/.profile
+    if [ -f ~/.profile ]; then
+        source ~/.profile
+    fi
 
     eval $(keychain --eval --quiet)
 
