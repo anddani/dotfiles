@@ -1,0 +1,8 @@
+let mapleader = ","
+
+map <Space> zz
+
+nmap <leader>gf :action GotoFile
+nmap <leader>gc :action GotoClass
+nmap <leader>gs :action GotoSymbol
+" nmap <leader>o :action 
