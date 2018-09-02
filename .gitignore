@@ -15,7 +15,7 @@ files/.vim/bundle
 files/.vim/plugin
 files/.vim/eclim
 
-.xmonad/.stack-work
+.stack-work/
 *.o
 *.hi
 *.errors
