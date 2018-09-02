@@ -75,7 +75,7 @@ else # Arch linux
         source ~/.profile
     fi
 
-    eval $(keychain --eval --quiet)
+    eval $(keychain --eval --quiet --agents ssh id_rsa)
 
     export LC_ALL=en_US.UTF-8
     export LANG=en_US.UTF-8
