@@ -2,39 +2,59 @@ import Data.List
 
 import XMonad
 import XMonad.Util.CustomKeys
+import XMonad.Util.Loggers
 import XMonad.Util.Run
 
 import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.UrgencyHook
 
 import XMonad.Layout.Gaps
 import XMonad.Layout.Spacing
 import XMonad.Layout.NoBorders
-import XMonad.Hooks.EwmhDesktops
 
 import System.Exit
 
 import Graphics.X11.ExtraTypes.XF86
 
+-- TODO: SetWMName
+--
+
+workSpaces = [ ("\xf109", "General")
+             , ("\xf269", "Firefox")
+             , ("\xf121", "Code")
+             , ("\xf392", "Discord")
+             ]
+
 main = do
-    wsBar <- spawnPipe myWorkspaceBar
-    statusBar <- spawnPipe myStatusBar
     spawn "feh --bg-fill ~/.wallpaper.jpg"
+    spawn "xmobar ~/.xmonad/xmobar/xmobarrc.hs"
     xmonad $ withUrgencyHook NoUrgencyHook $ defaultConfig
-        { terminal          = myTerminal
-        , modMask           = myModMask
-        , keys              = myKeys
-        , borderWidth       = myBorderWidth
-        , logHook           = myLogHook wsBar
-        , handleEventHook   = myHandleEventHook
-        , manageHook        = myManageHook
-        , layoutHook        = myLayoutHook
+        { terminal           = myTerminal
+        , borderWidth        = myBorderWidth
+        , focusedBorderColor = myFocusedBorderColor
+        , handleEventHook    = myHandleEventHook
+        , keys               = myKeys
+        , layoutHook         = myLayoutHook
+        , logHook            = myLogHook
+        , manageHook         = myManageHook
+        , modMask            = myModMask
+        , normalBorderColor  = myNormalBorderColor
+        , workspaces         = myWorkSpaces
         }
 
 myTerminal      = "st"
 myModMask       = mod1Mask
-myBorderWidth   = 2
+myBorderWidth   = 3
+gap = 5
+
+-- Colors
+myNormalBorderColor  = "#BFBFBF" -- Bright Grey
+myFocusedBorderColor = "#CAA9FA" -- Purple
+myXmobarFG           = "#282A36" -- Black
+myXmobarBG           = "#FF79C6" -- Pink
+myXmobarHiddenFG     = "#747C84" -- Dark Grey
 
 myHandleEventHook = fullscreenEventHook
     <+> docksEventHook
@@ -51,17 +71,19 @@ myManageHook :: ManageHook
 myManageHook = manageDocks
     <+> manageHook defaultConfig
 
-myLogHook h       = dynamicLogWithPP $ defaultPP
-    { ppOutput          = hPutStrLn h
-    , ppCurrent         = dzenColor "#303030" "#909090" . pad
-    , ppHidden          = dzenColor "#909090" "" . pad
-    , ppHiddenNoWindows = dzenColor "#606060" "" . pad
-    , ppLayout          = dzenColor "#909090" "" . pad
-    , ppUrgent          = dzenColor "#ff0000" "" . pad . dzenStrip
-    , ppTitle           = shorten 100
-    , ppWsSep           = ""
-    , ppSep             = "  "
-    }
+myLogHook = dynamicLogString myXmobarPP >>= xmonadPropLog
+
+myXmobarPP = def { ppCurrent = xmobarColor myXmobarBG "" . head . words
+                 , ppHidden  = xmobarColor myXmobarHiddenFG "" . head . words
+                 , ppSep     = " "
+                 , ppWsSep   = " "
+                 , ppExtras  = [prependWSLogger]
+                 , ppTitle   = const ""
+                 , ppLayout  = const ""
+                 }
+  where
+    prependIcon = (++) ":: " . last . words
+    prependWSLogger = fmap prependIcon <$> logCurrent
 
 myKeys = customKeys removedKeys addedKeys
 
@@ -85,36 +107,5 @@ addedKeys conf @ XConfig { modMask = modm } =
     , ((0,                  xF86XK_MonBrightnessDown), spawn "~/.dotfiles/scripts/modify_brightness.pl down")
     ]
 
-wrapWithTicks :: String -> String
-wrapWithTicks xs = '\'' : xs ++ "'"
-
-gap = 5
-screenWidth = 1920
-halfScreenWidth = screenWidth `div` 2
-background = "#FDF6E3"
-foreground = "#657B83"
-font = "xft:Raleway:size=12:antialias=true"
-
-myWorkspaceBar = unwords
-  [ "dzen2"
-  , "-dock"
-  , "-x", show gap
-  , "-w", show $ halfScreenWidth
-  , "-ta", "l"
-  , "-fn", wrapWithTicks font
-  , "-fg", wrapWithTicks foreground
-  , "-bg", wrapWithTicks background
-  ]
-
-myStatusBar = unwords
-  [ "conky"
-  , "-qc", "~/.xmonad/conkyrc"
-  , "|"
-  , "dzen2"
-  , "-x", show $ halfScreenWidth + gap
-  , "-w", show $ halfScreenWidth - 2 * gap
-  , "-ta", "r"
-  , "-fn", wrapWithTicks font
-  , "-fg", wrapWithTicks foreground
-  , "-bg", wrapWithTicks background
-  ]
+myWorkSpaces :: [String]
+myWorkSpaces = map (\(a, (i, w)) -> show a ++ ":<fn=1>" ++ i ++ "</fn> " ++ w) $ zip [1..] workSpaces
