@@ -9,7 +9,7 @@ function battery_color {
     if [ "$BAT_PERC" -lt "10" ]; then
 	COLOR="^fg($warning)"
     elif [ "$BAT_PERC" -lt "40" ]; then
-	COLOR="^fg(#FFFC7F)"
+	COLOR="^fg(#FF8C00)"
     else
 	COLOR="^fg(#32CD32)"
     fi
