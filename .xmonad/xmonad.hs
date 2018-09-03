@@ -8,6 +8,7 @@ import XMonad.Util.Run
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.UrgencyHook
 
 import XMonad.Layout.Gaps
@@ -47,7 +48,7 @@ main = do
 myTerminal      = "st"
 myModMask       = mod1Mask
 myBorderWidth   = 3
-gap = 5
+gap = 4
 
 -- Colors
 myNormalBorderColor  = "#BFBFBF" -- Bright Grey
@@ -62,13 +63,15 @@ myHandleEventHook = fullscreenEventHook
 
 myLayoutHook = avoidStruts
     $ smartBorders
-    $ gaps [(U, gap), (D, gap), (R, gap), (L, gap)]
+    $ smartSpacingWithEdge gap
     $ (tiled ||| Full)
         where
-            tiled = smartSpacing 2 $ Tall 1 (3/100) (1/2)
+            tiled = Tall 1 (3/100) (1/2)
 
 myManageHook :: ManageHook
 myManageHook = manageDocks
+    <+> (isFullscreen --> doFullFloat)
+    <+> (className =? "Mpv" --> doFloat)
     <+> manageHook defaultConfig
 
 myLogHook = dynamicLogString myXmobarPP >>= xmonadPropLog
