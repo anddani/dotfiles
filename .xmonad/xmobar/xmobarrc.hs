@@ -14,13 +14,6 @@ Config { font = "xft:DejaVu Sans Mono:style=Regular:size=12:antialias=true:hinti
        , allDesktops = True
        , overrideRedirect = True
        , commands = [ Run Date "<fc=#BD93F9><fn=1>\xf017</fn></fc> %a %b %d %H:%M" "date" 60
-                    , Run Cpu [ "-t", "<fc=#8BE9FD><fn=1>\xf2db</fn></fc> <total>"
-                              , "-L", "3"
-                              , "-H","50"
-                              , "--high", "#FF5555"
-                              , "-S", "True"
-                              , "-w", "3"
-                              , "-c", "0"] 10
                     , Run Memory [ "-t", "<fc=#FF79C6><fn=1>\xf16c</fn></fc> <usedratio>"
                                  , "-S", "True"
                                  , "-w", "3"
@@ -44,5 +37,5 @@ Config { font = "xft:DejaVu Sans Mono:style=Regular:size=12:antialias=true:hinti
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = " %XMonadLog% }{ %default:Master% | %cpu% | %memory% | %battery% | %date% "
+       , template = " %XMonadLog% }{ %default:Master% | %memory% | %battery% | %date% "
 }
