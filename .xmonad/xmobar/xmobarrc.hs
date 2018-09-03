@@ -18,6 +18,9 @@ Config { font = "xft:DejaVu Sans Mono:style=Regular:size=12:antialias=true:hinti
                                  , "-S", "True"
                                  , "-w", "3"
                                  , "-c", "0"] 10
+                    , Run DiskU [("/home", "<fc=#AB4642><fn=1>\xf0a0</fn></fc> <freep>%")] [ "-L", "20"
+                                                                                           , "-H", "50"
+                                                                                           , "-m", "1"] 50
                     , Run Volume "default" "Master" [ "-t", "<status> <volume>%"
                                                     , "--"
                                                     , "-O", "<fc=#FF6E67><fn=1>\xf028</fn></fc>"     -- On
@@ -37,5 +40,5 @@ Config { font = "xft:DejaVu Sans Mono:style=Regular:size=12:antialias=true:hinti
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = " %XMonadLog% }{ %default:Master% | %memory% | %battery% | %date% "
+       , template = " %XMonadLog% }{ %default:Master% | %memory% | %disku% | %battery% | %date% "
 }
