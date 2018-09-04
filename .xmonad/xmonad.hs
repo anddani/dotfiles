@@ -61,12 +61,11 @@ myHandleEventHook = fullscreenEventHook
     <+> docksEventHook
     <+> handleEventHook defaultConfig
 
-myLayoutHook = avoidStruts
-    $ smartBorders
+myLayoutHook = smartBorders
     $ smartSpacingWithEdge gap
     $ (tiled ||| Full)
         where
-            tiled = Tall 1 (3/100) (1/2)
+            tiled = avoidStruts $ Tall 1 (3/100) (1/2)
 
 myManageHook :: ManageHook
 myManageHook = manageDocks
