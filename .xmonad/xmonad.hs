@@ -29,7 +29,7 @@ workSpaces = [ ("\xf109", "General")
              ]
 
 main = do
-    spawn "feh --bg-fill ~/.wallpaper.jpg"
+    spawn "feh --bg-fill ~/.wallpaper.png"
     spawn "xmobar ~/.xmonad/xmobar/xmobarrc.hs"
     xmonad $ withUrgencyHook NoUrgencyHook $ defaultConfig
         { terminal           = myTerminal
