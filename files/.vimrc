@@ -26,8 +26,7 @@ Plugin 'tomtom/tlib_vim'
 Plugin 'tpope/vim-surround'
 Plugin 'wincent/Command-T'
 Plugin 'tpope/vim-fugitive'
-Plugin 'altercation/vim-colors-solarized'
-
+Plugin 'dracula/vim'
 
 Plugin 'JamshedVesuna/vim-markdown-preview'
 
@@ -122,7 +121,7 @@ set t_Co=256
 " colorscheme bluer
 " colorscheme molokai
 set background=dark
-colorscheme solarized
+colorscheme dracula
 
 " Hybrid line number
 set relativenumber
