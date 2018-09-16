@@ -25,7 +25,7 @@ import Graphics.X11.ExtraTypes.XF86
 workSpaces = [ ("\xf109", "General")
              , ("\xf269", "Firefox")
              , ("\xf121", "Code")
-             , ("\xf392", "Discord")
+             , ("\xf27A", "Discord")
              ]
 
 main = do

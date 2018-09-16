@@ -18,4 +18,4 @@ if ($ARGV[0] =~ /up/) {
     $new_brightness = max $min_brightness, ceil($current_brightness - $unit);
 }
 
-`echo $new_brightness | sudo tee /sys/class/backlight/intel_backlight/brightness`
+`echo $new_brightness | tee /sys/class/backlight/intel_backlight/brightness`

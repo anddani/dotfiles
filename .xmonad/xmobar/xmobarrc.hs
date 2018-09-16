@@ -14,17 +14,20 @@ Config { font = "xft:DejaVu Sans Mono:style=Regular:size=12:antialias=true:hinti
        , allDesktops = True
        , overrideRedirect = True
        , commands = [ Run Date "<fc=#BD93F9><fn=1>\xf017</fn></fc> %a %b %d %H:%M" "date" 60
+                    , Run Brightness [ "-t", "<fc=#99BADD><fn=1>\xf108</fn></fc> <percent>%"
+                                     , "--"
+                                     , "-D", "intel_backlight" ] 50
                     , Run Memory [ "-t", "<fc=#FF79C6><fn=1>\xf16c</fn></fc> <usedratio>"
                                  , "-S", "True"
                                  , "-w", "3"
-                                 , "-c", "0"] 10
+                                 , "-c", "0" ] 10
                     , Run DiskU [("/home", "<fc=#AB4642><fn=1>\xf0a0</fn></fc> <freep>%")] [ "-L", "20"
                                                                                            , "-H", "50"
-                                                                                           , "-m", "1"] 50
+                                                                                           , "-m", "1" ] 50
                     , Run Volume "default" "Master" [ "-t", "<status> <volume>%"
                                                     , "--"
                                                     , "-O", "<fc=#FF6E67><fn=1>\xf028</fn></fc>"     -- On
-                                                    , "-o", "<fc=#FF6E67><fn=1>\xf026</fn></fc>"] 10 -- Off
+                                                    , "-o", "<fc=#FF6E67><fn=1>\xf026</fn></fc>" ] 10 -- Off
                     , Run BatteryP ["BAT0", "BAT1"] [ "-t", "<fc=#8DB600><fn=1>\xf240</fn></fc> <acstatus>"
                                                     , "-L", "10"
                                                     , "-H", "60"
@@ -34,11 +37,10 @@ Config { font = "xft:DejaVu Sans Mono:style=Regular:size=12:antialias=true:hinti
                                                     , "-h", "#8DB600"
                                                     , "-o", "<left>% (<timeleft>)"
                                                     , "-O", "Charging <left>%"
-                                                    , "-i", "Charged"
-                                                    ] 50
+                                                    , "-i", "Charged"] 50
                     , Run XMonadLog
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = " %XMonadLog% }{ %default:Master% | %memory% | %disku% | %battery% | %date% "
+       , template = " %XMonadLog% }{ %bright% | %default:Master% | %memory% | %disku% | %battery% | %date% "
 }
