@@ -88,6 +88,10 @@ else # Arch linux
         export PATH="$HOME/bin:$PATH"
     fi
 
+    if [[ -d "$HOME/.local/bin" ]] ; then
+        export PATH="$HOME/.local/bin:$PATH"
+    fi
+
     alias space="df -h"
     alias archupdate="~/.dotfiles/archscripts/updatescript"
     alias mountusb="sudo mount -t ntfs-3g /dev/sdb1 /mnt/ntfs"
