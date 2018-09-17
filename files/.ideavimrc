@@ -1,8 +1,12 @@
+set surround
+
 let mapleader = ","
 
 map <Space> zz
 
-nmap <leader>gf :action GotoFile
-nmap <leader>gc :action GotoClass
-nmap <leader>gs :action GotoSymbol
+nmap <leader>rc :action ReformatCode<CR>
+
+nmap <leader>gf :action GotoFile<CR>
+nmap <leader>gc :action GotoClass<CR>
+nmap <leader>gs :action GotoSymbol<CR>
 " nmap <leader>o :action 
