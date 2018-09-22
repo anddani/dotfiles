@@ -29,7 +29,7 @@ workSpaces = [ ("\xf109", "General")
              ]
 
 main = do
-    spawn "feh --bg-fill ~/.wallpaper.png"
+    spawn $ "xsetroot -solid " ++ quotes myXmobarFG
     spawn "xmobar ~/.xmonad/xmobar/xmobarrc.hs"
     xmonad $ withUrgencyHook NoUrgencyHook $ defaultConfig
         { terminal           = myTerminal
@@ -111,3 +111,7 @@ addedKeys conf @ XConfig { modMask = modm } =
 
 myWorkSpaces :: [String]
 myWorkSpaces = map (\(a, (i, w)) -> show a ++ ":<fn=1>" ++ i ++ "</fn> " ++ w) $ zip [1..] workSpaces
+
+quotes :: String -> String
+quotes s = "'" ++ s ++ "'"
+

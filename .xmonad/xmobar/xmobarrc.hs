@@ -5,7 +5,7 @@ Config { font = "xft:DejaVu Sans Mono:style=Regular:size=12:antialias=true:hinti
        , additionalFonts = ["xft:FontAwesome:size=12"]
        , bgColor = "#282A36" -- Black
        , fgColor = "#E6E6E6" -- Bright grey
-       , alpha = 0
+       , alpha = 255
        , position = TopSize C 100 20
        , lowerOnStart = True
        , pickBroadest = False
