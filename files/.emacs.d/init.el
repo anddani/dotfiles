@@ -38,6 +38,12 @@
 
 (setq-default indent-tabs-mode nil)
 
+;; Set json indentation to 2 spaces
+(add-hook 'json-mode-hook
+          (lambda ()
+            (make-local-variable 'js-indent-level)
+            (setq js-indent-level 2)))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
