@@ -52,7 +52,7 @@
  '(magit-pull-arguments nil)
  '(package-selected-packages
    (quote
-    (helm-config evil-magit json-mode dracula-theme evil-leader evil)))
+    (markdown-mode helm-config evil-magit json-mode dracula-theme evil-leader evil)))
  '(safe-local-variable-values
    (quote
     ((haskell-process-use-ghci . t)
