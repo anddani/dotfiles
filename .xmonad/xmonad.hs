@@ -45,7 +45,7 @@ main = do
         , workspaces         = myWorkSpaces
         }
 
-myTerminal      = "st"
+myTerminal      = "alacritty"
 myModMask       = mod1Mask
 myBorderWidth   = 3
 gap = 4
