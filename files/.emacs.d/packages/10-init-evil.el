@@ -11,7 +11,8 @@
   :init
   (progn
     (setq evil-default-cursor t)
-    (setq evil-want-C-u-scroll t) ; Allow C-u to move up half a screen
+    (setq evil-want-C-u-scroll t
+          evil-want-C-u-delete t) ; Allow C-u to move up half a screen
     (use-package evil-leader
       :init (global-evil-leader-mode)
       :config
