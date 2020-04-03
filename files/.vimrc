@@ -6,11 +6,8 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " include plugins
-" Plugin 'VimVundle/Vundle.vim'
 Plugin 'Lokaltog/vim-powerline'
 Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'Valloric/YouCompleteMe'
-" Plugin 'anddani/vim-pairs'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'garbas/vim-snipmate'
 Plugin 'klen/python-mode'
@@ -32,20 +29,7 @@ Plugin 'JamshedVesuna/vim-markdown-preview'
 
 " Lisp
 Plugin 'vim-scripts/paredit.vim'
-" Plugin 'l04m33/vlime'
 Plugin 'kovisoft/slimv'
-
-" Clojure
-" Plugin 'tpope/vim-fireplace'
-" Plugin 'tpope/vim-classpath'
-" Plugin 'kien/rainbow_parentheses.vim'
-" Plugin 'vim-scripts/paredit.vim'
-
-" Haskell
-Plugin 'eagletmt/ghcmod-vim'
-Plugin 'Shougo/vimproc.vim'
-Plugin 'vim-syntastic/syntastic'
-Plugin 'neovimhaskell/haskell-vim'
 
 let $PATH = $PATH . ':' . expand('~/.cabal/bin')
 
