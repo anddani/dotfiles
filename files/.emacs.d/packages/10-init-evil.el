@@ -12,6 +12,7 @@
   (progn
     (setq evil-default-cursor t)
     (setq evil-want-C-u-scroll t) ; Allow C-u to move up half a screen
+    (setq evil-toggle-key "C-\\")
     (use-package evil-leader
       :init (global-evil-leader-mode)
       :config

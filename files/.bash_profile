@@ -6,3 +6,4 @@ export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 # Finished adapting your PATH environment variable for use with MacPorts.
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+if [ -e /Users/andredanielsson/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/andredanielsson/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
