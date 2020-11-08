@@ -26,6 +26,11 @@ workSpaces = [ ("\xf109", "General")
              , ("\xf269", "Firefox")
              , ("\xf121", "Code")
              , ("\xf27A", "Discord")
+             , ("", "Slack")
+             , ("", "")
+             , ("", "")
+             , ("", "")
+             , ("", "")
              ]
 
 main = do
@@ -46,7 +51,7 @@ main = do
         }
 
 myTerminal      = "alacritty"
-myModMask       = mod1Mask
+myModMask       = mod4Mask
 myBorderWidth   = 3
 gap = 4
 
