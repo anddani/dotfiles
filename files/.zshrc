@@ -64,12 +64,15 @@ if [[ $platform == 'mac' ]] ; then
     
     export GEM_HOME=$HOME/Software/ruby
     export PATH=$PATH:$HOME/Software/ruby/bin
+    export NIX_IGNORE_SYMLINK_STORE=1
 
     alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
     alias emacs="/usr/local/Cellar/emacs/25.3/bin/emacs -nw"
 
     alias nusmv="~/NuSMV-2.6.0-Darwin/bin/NuSMV"
     export PATH=$HOME/.local/bin:$PATH
+    export PATH="/usr/local/opt/ghc@8.6/bin:$PATH"
+    export POSTNORD_TOOLS_PATH=~/Documents/test/postnord-tools
 else # Arch linux
     if [ -f ~/.profile ]; then
         source ~/.profile
@@ -120,6 +123,9 @@ export KEYTIMEOUT=1
 export EDITOR=vim
 bindkey -v
 bindkey '^[[Z' reverse-menu-complete
+
+# nix
+source ~/.nix-profile/etc/profile.d/nix.sh
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 # export PATH="$PATH:$HOME/.rvm/bin"

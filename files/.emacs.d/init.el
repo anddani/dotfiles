@@ -1,7 +1,7 @@
 ;; Setup emacs gui
 (setq inhibit-startup-message t)
 (global-linum-mode t)
-(menu-bar-mode -1)
+(menu-bar-mode t)
 (tool-bar-mode -1)
 (toggle-scroll-bar -1)
 (blink-cursor-mode 0)
@@ -28,6 +28,8 @@
 
 ;; Load packages dir
 (load-directory "~/.emacs.d/packages")
+
+(exec-path-from-shell-initialize)
 
 ;; Move all backup files to separate directory
 (setq backup-directory-alist `(("." . "~/.emacs.d/emacs-backups")))
