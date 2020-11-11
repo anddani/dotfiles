@@ -47,7 +47,14 @@
   # Enable sound.
   # sound.enable = true;
   # hardware.pulseaudio.enable = true;
-  hardware.trackpoint.emulateWheel = true;
+  hardware = {
+    trackpoint = {
+      enable = true;
+      emulateWheel = true;
+      sensitivity = 255;
+      speed = 200;
+    };
+  };
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;

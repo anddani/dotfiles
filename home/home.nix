@@ -6,6 +6,8 @@
   home.username = "anddani";
   home.homeDirectory = "/home/anddani";
 
+  home.file.".xmonad/xmonad.hs".source = "${config.home.homeDirectory}/.dotfiles/.xmonad/xmonad.hs";
+
   home.packages = with pkgs; [
     ncdu
   ];

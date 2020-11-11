@@ -34,8 +34,7 @@ workSpaces = [ ("\xf109", "General")
              ]
 
 main = do
-    spawn $ "xsetroot -solid " ++ quotes myXmobarFG
-    spawn "xmobar ~/.xmonad/xmobar/xmobarrc.hs"
+    xmproc <- spawnPipe "xmobar"
     xmonad $ withUrgencyHook NoUrgencyHook $ defaultConfig
         { terminal           = myTerminal
         , borderWidth        = myBorderWidth
@@ -78,16 +77,17 @@ myManageHook = manageDocks
     <+> (className =? "Mpv" --> doFloat)
     <+> manageHook defaultConfig
 
-myLogHook = dynamicLogString myXmobarPP >>= xmonadPropLog
-
-myXmobarPP = def { ppCurrent = xmobarColor myXmobarBG "" . head . words
-                 , ppHidden  = xmobarColor myXmobarHiddenFG "" . head . words
-                 , ppSep     = " "
-                 , ppWsSep   = " "
-                 , ppExtras  = [prependWSLogger]
-                 , ppTitle   = const ""
-                 , ppLayout  = const ""
-                 }
+myLogHook h = dynamicLogWithPP xmobarPP
+  { ppOutput = hPutStrLn h
+  , ppCurrent = xmobarColor myXmobarBG "" . head . words
+-- ppVisible
+  , ppHidden  = xmobarColor myXmobarHiddenFG "" . head . words
+  , ppSep     = " "
+  , ppWsSep   = " "
+  , ppExtras  = [prependWSLogger]
+  , ppTitle   = const ""
+  , ppLayout  = const ""
+  }
   where
     prependIcon = (++) ":: " . last . words
     prependWSLogger = fmap prependIcon <$> logCurrent

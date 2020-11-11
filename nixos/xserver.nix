@@ -3,6 +3,7 @@
 {
   services.xserver = {
     enable = true;
+    xkbOptions = "ctrl:nocaps";
     windowManager.xmonad = {
       enable = true;
       enableContribAndExtras = true;
