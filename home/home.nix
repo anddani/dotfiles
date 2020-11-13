@@ -6,16 +6,47 @@
   home.username = "anddani";
   home.homeDirectory = "/home/anddani";
 
-  home.file.".xmonad/xmonad.hs".source = "${config.home.homeDirectory}/.dotfiles/.xmonad/xmonad.hs";
-
   home.packages = with pkgs; [
+    fzf
+    ripgrep
+    ranger
+    htop
+    jq
+    wget
+    tree
     ncdu
   ];
-
+  xsession.enable = true;
+  xsession.windowManager.xmonad = {
+    enable = true;
+    enableContribAndExtras = true;
+    config = "${config.home.homeDirectory}/.dotfiles/.xmonad/xmonad.hs";
+  };
   programs.git = {
     enable = true;
     userName = "anddani";
     userEmail = "andredanielsson93@gmail.com";
+  };
+  programs.neovim = {
+    enable = true;
+    vimAlias = true;
+    extraConfig = ''
+      colorscheme gruvbox
+      filetype plugin indent on
+      set tabstop=4
+      set shiftwidth=4
+      set expandtab
+      au Filetype json set tabstop=2 shiftwidth=2
+    '';
+    plugins = with pkgs.vimPlugins; [
+      vim-nix
+      gruvbox
+    ];
+  };
+
+  programs.tmux = {
+    enable = true;
+    terminal = "tmux-256color";
   };
 
   # This value determines the Home Manager release that your

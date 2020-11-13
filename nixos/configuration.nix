@@ -3,7 +3,7 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+      /etc/nixos/hardware-configuration.nix
       ./xserver.nix
     ];
 
@@ -60,9 +60,21 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
+  programs.fish = {
+    enable = true;
+    #  shellAliases = [
+    #    ll = "ls -l";
+    #    l = "ls -la";
+    #    ".." = "cd ..";
+    #    "..." = "cd ../..";
+    #    "...." = "cd ../../..";
+    #    "....." = "cd ../../../..";
+    #  ];
+  };
   users.users.anddani = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" ];
+    shell = pkgs.fish;
   };
 
   # List packages installed in system profile. To search, run:
@@ -78,11 +90,16 @@
 
     rofi
     acpi
-    haskellPackages.xmobar
     tree
     unzip
+    haskellPackages.xmobar
     neovim
     ranger
+  ];
+  
+  fonts.fonts = with pkgs; [
+    fira-code
+    fira-code-symbols
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -110,6 +127,9 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+  environment.variables = {
+    EDITOR = "vim";
+  };
   system.stateVersion = "20.09"; # Did you read the comment?
 
 }

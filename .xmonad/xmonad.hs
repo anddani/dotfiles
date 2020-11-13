@@ -34,7 +34,7 @@ workSpaces = [ ("\xf109", "General")
              ]
 
 main = do
-    xmproc <- spawnPipe "xmobar"
+    xmproc <- spawnPipe "xmobar ~/.dotfiles/.xmonad/xmobar/xmobarrc.hs"
     xmonad $ withUrgencyHook NoUrgencyHook $ defaultConfig
         { terminal           = myTerminal
         , borderWidth        = myBorderWidth
@@ -77,9 +77,10 @@ myManageHook = manageDocks
     <+> (className =? "Mpv" --> doFloat)
     <+> manageHook defaultConfig
 
-myLogHook h = dynamicLogWithPP xmobarPP
-  { ppOutput = hPutStrLn h
-  , ppCurrent = xmobarColor myXmobarBG "" . head . words
+myLogHook = dynamicLogString myXmobarPP >>= xmonadPropLog
+
+myXmobarPP = def
+  { ppCurrent = xmobarColor myXmobarBG "" . head . words
 -- ppVisible
   , ppHidden  = xmobarColor myXmobarHiddenFG "" . head . words
   , ppSep     = " "
