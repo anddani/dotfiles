@@ -1,8 +1,8 @@
 -- TODO: Wifi status with different icons?
 -- TODO: Battery status for both batteries
 -- TODO: Add all icons
-Config { font = "xft:DejaVu Sans Mono:style=Regular:size=12:antialias=true:hinting=false"
-       , additionalFonts = ["xft:FontAwesome:size=12"]
+Config { font = "xft:Fira Code Retina:style=Regular:size=12:antialias=true:hinting=false"
+       , additionalFonts = ["xft:Font Awesome 5 Free Solid:size=12", "xft:Font Awesome 5 Brands: size=12"]
        , bgColor = "#282A36" -- Black
        , fgColor = "#E6E6E6" -- Bright grey
        , alpha = 255
@@ -19,8 +19,9 @@ Config { font = "xft:DejaVu Sans Mono:style=Regular:size=12:antialias=true:hinti
                                  , "-w", "3"
                                  , "-c", "0" ] 10
                     , Run XMonadLog
+                    , Run Kbd [("us", "US"), ("se", "SE")]
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = " %XMonadLog% }{ %default:Master% | %memory% | %date% "
+       , template = " %XMonadLog% }{ %bright% | %default:Master% | %memory% | %disku% | %battery% | %kbd% | %date% "
 }

@@ -100,6 +100,7 @@
   fonts.fonts = with pkgs; [
     fira-code
     fira-code-symbols
+    font-awesome-ttf
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
