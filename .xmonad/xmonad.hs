@@ -50,7 +50,7 @@ main = do
         }
 
 myTerminal      = "alacritty"
-myModMask       = mod4Mask
+myModMask       = mod1Mask
 myBorderWidth   = 3
 gap = 4
 
