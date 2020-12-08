@@ -73,7 +73,7 @@
   };
   users.users.anddani = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ];
+    extraGroups = [ "wheel" "networkmanager" "video" ];
     shell = pkgs.fish;
   };
 
