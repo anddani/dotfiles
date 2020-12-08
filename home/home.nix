@@ -15,6 +15,7 @@
     wget
     tree
     ncdu
+    xclip
   ];
   xsession.enable = true;
   xsession.windowManager.xmonad = {
