@@ -77,7 +77,8 @@ myManageHook = manageDocks
     <+> (className =? "Mpv" --> doFloat)
     <+> manageHook defaultConfig
 
-myLogHook = dynamicLogString myXmobarPP >>= xmonadPropLog
+myLogHook = -- dynamicLogWithPP $ def { ppOutput = hPutStrLn xmproc }
+    dynamicLogString myXmobarPP >>= xmonadPropLog
 
 myXmobarPP = def
   { ppCurrent = xmobarColor myXmobarBG "" . head . words

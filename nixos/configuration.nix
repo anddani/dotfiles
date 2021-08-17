@@ -45,9 +45,9 @@
   # services.printing.enable = true;
 
   # Enable sound.
-  # sound.enable = true;
-  # hardware.pulseaudio.enable = true;
+  sound.enable = true;
   hardware = {
+    pulseaudio.enable = true;
     trackpoint = {
       enable = true;
       emulateWheel = true;
@@ -62,6 +62,9 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   programs.fish = {
     enable = true;
+    promptInit = ''
+      fish_vi_key_bindings
+      '';
     #  shellAliases = [
     #    ll = "ls -l";
     #    l = "ls -la";
@@ -73,9 +76,13 @@
   };
   users.users.anddani = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "video" ];
+    extraGroups = [ "wheel" "networkmanager" "video" "audio" ];
     shell = pkgs.fish;
   };
+
+  services.mullvad-vpn.enable = true;
+  networking.firewall.checkReversePath = "loose";
+  networking.wireguard.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -87,6 +94,8 @@
     git
     vim
     wget
+
+    mullvad-vpn
 
     rofi
     acpi

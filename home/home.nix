@@ -21,7 +21,7 @@
   xsession.windowManager.xmonad = {
     enable = true;
     enableContribAndExtras = true;
-    config = "${config.home.homeDirectory}/.dotfiles/.xmonad/xmonad.hs";
+    config = /. + "${config.home.homeDirectory}/.dotfiles/.xmonad/xmonad.hs";
   };
   programs.git = {
     enable = true;
