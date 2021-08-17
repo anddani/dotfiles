@@ -1,9 +1,16 @@
 { config, pkgs, ... }:
 
-{
+let
+  home-manager = builtins.fetchGit {
+    url = "https://github.com/rycee/home-manager.git";
+    rev = "b39647e52ed3c0b989e9d5c965e598ae4c38d7ef";
+    ref = "release-21.05";
+  };
+in {
   imports =
     [ # Include the results of the hardware scan.
       /etc/nixos/hardware-configuration.nix
+      (import "${home-manager}/nixos")
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -59,6 +66,7 @@
     #    "....." = "cd ../../../..";
     #  ];
   };
+  home-manager.users.anddani = (import ../home/home.nix);
   users.users.anddani = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "video" "audio" ];
