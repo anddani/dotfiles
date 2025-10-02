@@ -1,3 +1,0 @@
-#!/bin/sh
-binary="/Applications/MacVim.app/Contents/MacOS/MacVim"
-exec "$binary" -g -f ${1:+"$@"}

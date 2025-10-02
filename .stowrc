@@ -1,0 +1,4 @@
+--target=~/
+--ignore=.gitignore
+--ignore=.stowrc
+--ignore=.DS_Store

@@ -1,9 +1,0 @@
-#*
-#!.gitignore
-#!helper/
-#!packages/
-#!init.el
-
-auto-save-list
-network-security.data
-elpa

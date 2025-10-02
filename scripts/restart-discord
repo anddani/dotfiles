@@ -1,5 +1,0 @@
-#!/bin/bash
-
-PID=$(ps aux | grep 'DiscordCanary$' | awk '{print $2}')
-kill -9 $PID
-discord-canary &

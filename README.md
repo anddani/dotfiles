@@ -1,12 +1,17 @@
 # Dotfiles
 
+```sh
+brew tap railwaycat/emacsmacport
 
+brew install \
+  --cask emacs-mac \
+  --cask wezterm \
+  stow yazi zellij helix \
+  ripgrep starship \
 
+# DOOM Emacs
+git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
+~/.config/emacs/bin/doom install
 
-Clone to ~/.dotfiles
-
-`# nix-channel --add https://nixos.org/channels/nixos-unstable nixos`
-
-`# nix-channel --add https://github.com/rycee/home-manager/archive/master.tar.gz home-manager`
-
-`# nix-channel --update`
+stow .
+```

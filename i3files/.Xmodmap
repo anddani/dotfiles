@@ -1,2 +1,0 @@
-! Remap lessthan to tilde
-keycode 94 = grave asciitilde grave asciitilde
