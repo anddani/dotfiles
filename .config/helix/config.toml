@@ -1,0 +1,48 @@
+theme = "catppuccin_frappe"
+
+[editor]
+true-color = true
+
+[editor.file-picker]
+hidden = false
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.statusline]
+left = ["mode", "spinner"]
+center = ["file-name"]
+right = ["diagnostics", "selections", "file-line-ending", "file-type", "version-control"]
+separator = "|"
+
+[editor.statusline.mode]
+normal = "NORMAL"
+insert = "INSERT"
+select = "SELECT"
+
+[editor.indent-guides]
+render = true
+rainbow = "dim"
+character = "┆"
+
+[editor.lsp]
+display-messages = true
+display-inlay-hints = true
+
+[keys.normal]
+"C-y" = "scroll_up"
+"C-e" = "scroll_down"
+"C-[" = "jump_backward"
+"C-]" = "jump_forward"
+
+[keys.normal.space]
+"i" = ":toggle lsp.display-inlay-hints"
+"t" = [
+    ':sh rm -f /tmp/yazi-file',
+    ':insert-output yazi %{buffer_name} --chooser-file=/tmp/yazi-file',
+    ':insert-output echo "\x1b[?1049h\x1b[?2004h" > /dev/tty',
+    ':open %sh{cat /tmp/yazi-file}',
+    ':redraw',
+]
