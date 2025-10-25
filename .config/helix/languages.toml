@@ -1,9 +1,14 @@
 [language-server.expert]
 command = "expert"
 
-[language-server.tailwindcss-ls]
-args    = ["--stdio"]
+# [language-server.tailwindcss-ls]
+# command = "tailwindcss-language-server"
+# args = ["--stdio"]
+#
+[language-server.tailwindcss-ls-ex]
 command = "tailwindcss-language-server"
+args = ["--stdio"]
+config = { tailwindCSS = { includeLanguages = { "elixir" = "html", "heex" = "html" } } } 
 
 [language-server.vscode-css-language-server]
 args                       = ["--stdio"]
@@ -20,13 +25,15 @@ auto-format = true
 
 [[language]]
 name = "elixir"
+language-id = "phoenix-heex"
+language-servers = ["elixir-ls", "tailwindcss-ls-ex", "vscode-html-language-server"]
 auto-format = true
-language-servers = ["expert"]
 
 [[language]]
 name = "heex"
+language-id = "phoenix-heex"
+language-servers = ["elixir-ls", "tailwindcss-ls-ex", "vscode-html-language-server"]
 auto-format = true
-language-servers = ["elixir-ls", "expert"]
 
 # [[language]]
 # name = "elixir"
