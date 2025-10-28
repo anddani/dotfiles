@@ -1,34 +1,13 @@
 .DS_Store
-*.pyc
 *.swp
 
-.netrwhist
-*/.Xauthority
-
-i3files/.config/*
-!i3files/.config/i3*
-!i3files/.config/mpv
-i3files/.config/mpv/watch_later
-i3files/.config/i3/config
-
-files/.vim/bundle
-files/.vim/plugin
-files/.vim/eclim
-
-.stack-work/
-*.o
-*.hi
-*.errors
-xmonad-x86_64-linux
+.config/zed/conversations/
+.config/zed/prompts/
+.config/zed/themes/
 
 # emacs
 *~
 \#*#
 .\#*
-monokai.terminal
 
-.uuid
-.config/discord
-.config/htop
-.config/lutris
 result
